@@ -1,7 +1,7 @@
 +++
 title = "Week 1"
-description = "My blog site."
+description = ""
 date = 2025-06-08
 +++
 
-[Cross Compile Notes](/@/notes/cross-compile/)
+[Cross Compile Notes](../../notes/cross-compile)

@@ -11,7 +11,7 @@ generate_feeds = true
 lang = "en"
 
 title = "Posts"
-subtitle = ""
+subtitle = "Weekly updates"
 
 date_format = "%b %-d, %Y"
 

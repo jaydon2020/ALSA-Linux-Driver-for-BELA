@@ -1,6 +1,6 @@
 +++
-title = "My Blog"
-description = "My blog site."
+title = "My Notes"
+description = "Collection of technical notes."
 sort_by = "date"
 template = "blog.html"
 page_template = "post.html"
@@ -10,8 +10,8 @@ generate_feeds = true
 [extra]
 lang = "en"
 
-title = "Posts"
-subtitle = ""
+title = "Notes"
+subtitle = "Collection of technical notes..."
 
 date_format = "%b %-d, %Y"
 
