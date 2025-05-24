@@ -4,4 +4,4 @@ description = "My blog site."
 date = 2025-06-08
 +++
 
-[Link](/notes/cross-compile/)
+[Cross Compile Notes](@/notes/cross-compile.md)
