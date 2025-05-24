@@ -6,7 +6,7 @@ template = 'home.html'
 footer = true
 
 name = "ALSA Driver for BELA"
-id = "JianDe"
+id = "BeagleBoard.org"
 bio = "This is a site for GSoC weekly blogs"
 avatar = "img/avatar.png"
 links = [
@@ -22,5 +22,5 @@ recent_more_text = "more »"
 comment = false
 date_format = "%b %-d, %Y"
 +++
-
-## Recent Blogs
+---
+# Progress Updates

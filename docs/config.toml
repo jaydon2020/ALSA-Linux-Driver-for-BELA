@@ -24,6 +24,7 @@ external_links_target_blank = true
 external_links_no_follow = true
 external_links_no_referrer = true
 smart_punctuation = false
+insert_anchor_links = "none"
 
 [slugify]
 paths = "on"
@@ -38,6 +39,7 @@ internal_level = "warn"
 
 sections = [
   { name = "posts", path = "/posts", is_external = false },
+  { name = "notes", path = "/notes", is_external = false },
   # { name = "tags", path = "/tags", is_external = false },
   # { name = "collections", path = "/collections", is_external = false },
   { name = "about", path = "/about", is_external = false },
