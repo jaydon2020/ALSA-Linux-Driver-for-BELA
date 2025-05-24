@@ -4,4 +4,4 @@ description = "My blog site."
 date = 2025-06-08
 +++
 
-[Cross Compile Notes](@/notes/cross-compile.md)
+[Cross Compile Notes]({{ config.base_url }}notes/cross-compile/)

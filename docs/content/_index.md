@@ -10,7 +10,7 @@ id = "JianDe"
 bio = "This is a site for GSoC weekly blogs"
 avatar = "img/avatar.png"
 links = [
-    { name = "GitHub", icon = "github", url = "https://github.com/isunjn/serene" },
+    { name = "GitHub", icon = "github", url = "https://github.com/jaydon2020/ALSA-Linux-Driver-for-BELA" },
     # { name = "Twitter", icon = "twitter", url = "https://twitter.com/<your-username>" },
     # { name = "Gitlab", icon = "gitlab", url = "mailto:<your-email-address>" },  
 ]
