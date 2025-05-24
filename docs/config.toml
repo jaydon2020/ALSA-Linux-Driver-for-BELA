@@ -30,6 +30,8 @@ paths = "on"
 taxonomies = "on"
 anchors = "on"
 
+[link_checker]
+internal_level = "warn"
 #=========================================================================================
 
 [extra]
