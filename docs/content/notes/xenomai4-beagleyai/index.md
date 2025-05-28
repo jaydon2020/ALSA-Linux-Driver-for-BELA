@@ -220,10 +220,7 @@ thread-mode-bits: OK
 ---
 
 ### **Conclusion**
-You've now transformed your BeagleBone Black into a **hard real-time platform**:  
-1. Combined Preempt-RT and Xenomai EVL  
-2. Achieved **single-digit microsecond latency**  
-3. Enabled deterministic control for robotics/industrial apps  
+- Coming soon
 
 **Next Steps**:
 - Coming soon
