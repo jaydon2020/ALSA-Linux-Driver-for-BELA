@@ -148,8 +148,4 @@ Maximum read latency: 725.624us, 0.725624ms (1378.1250Hz)
 Playback time = 8580.707455, Record time = 8580.707458, diff = -3
 ```
 
-## Conclusion
-
-Benchmarking ALSA on a real‑time kernel reveals critical insights into system behavior under low‑latency constraints. While our initial test at 1.45 ms round‑trip failed, the data guides adjustments—scheduler tuning, CPU isolation, and IRQ affinity—that can push the system toward sub‑millisecond performance. Future work will explore these optimizations and extend testing across different hardware codecs and sample rates.
-
 ---
