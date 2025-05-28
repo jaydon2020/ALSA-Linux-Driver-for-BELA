@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>My Blog</title>
+	<subtitle>My blog site.</subtitle>
+	<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/posts/feed.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/posts/"/>
+	<updated>2025-06-08T00:00:00+00:00</updated>
+	<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/posts/feed.xml</id>
+	<entry xml:lang="en">
+		<title>Week 1</title>
+		<published>2025-06-08T00:00:00+00:00</published>
+		<updated>2025-06-08T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/posts/week1/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/posts/week1/</id>
+		<content type="html">
+&lt;blockquote class=&quot;callout warning has-title&quot;&gt;
+  
+  
+  &lt;p class=&quot;title&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+      &lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M12.865 3.00017L22.3912 19.5002C22.6674 19.9785 22.5035 20.5901 22.0252 20.8662C21.8732 20.954 21.7008 21.0002 21.5252 21.0002H2.47266C1.92037 21.0002 1.47266 20.5525 1.47266 20.0002C1.47266 19.8246 1.51886 19.6522 1.60663 19.5002L11.1329 3.00017C11.4091 2.52187 12.0206 2.358 12.4989 2.63414C12.651 2.72191 12.7772 2.84815 12.865 3.00017ZM4.20471 19.0002H19.7932L11.9989 5.50017L4.20471 19.0002ZM10.9989 16.0002H12.9989V18.0002H10.9989V16.0002ZM10.9989 9.00017H12.9989V14.0002H10.9989V9.00017Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+
+    &lt;&#x2F;span&gt;
+    &lt;strong&gt;Warning&lt;&#x2F;strong&gt;
+  &lt;&#x2F;p&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;This is still a draft&lt;&#x2F;p&gt;
+
+  &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;blockquote&gt;
+
+&lt;h2 id=&quot;action-items&quot;&gt;Action Items&lt;a class=&quot;zola-anchor&quot; href=&quot;#action-items&quot; aria-label=&quot;Anchor link for: action-items&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create Introduction Video&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Bonding Period</title>
+		<published>2025-06-01T00:00:00+00:00</published>
+		<updated>2025-06-01T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/posts/bonding/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/posts/bonding/</id>
+		<content type="html">
+&lt;blockquote class=&quot;callout warning has-title&quot;&gt;
+  
+  
+  &lt;p class=&quot;title&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+      &lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M12.865 3.00017L22.3912 19.5002C22.6674 19.9785 22.5035 20.5901 22.0252 20.8662C21.8732 20.954 21.7008 21.0002 21.5252 21.0002H2.47266C1.92037 21.0002 1.47266 20.5525 1.47266 20.0002C1.47266 19.8246 1.51886 19.6522 1.60663 19.5002L11.1329 3.00017C11.4091 2.52187 12.0206 2.358 12.4989 2.63414C12.651 2.72191 12.7772 2.84815 12.865 3.00017ZM4.20471 19.0002H19.7932L11.9989 5.50017L4.20471 19.0002ZM10.9989 16.0002H12.9989V18.0002H10.9989V16.0002ZM10.9989 9.00017H12.9989V14.0002H10.9989V9.00017Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+
+    &lt;&#x2F;span&gt;
+    &lt;strong&gt;Warning&lt;&#x2F;strong&gt;
+  &lt;&#x2F;p&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;This is still a draft&lt;&#x2F;p&gt;
+
+  &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;blockquote&gt;
+
+</content>
+	</entry>
+</feed>
