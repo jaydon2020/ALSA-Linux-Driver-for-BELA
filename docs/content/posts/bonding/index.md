@@ -1,5 +1,9 @@
 +++
 title = "Bonding Period"
-description = "My blog site."
+description = ""
 date = 2025-06-01
 +++
+
+{% warning(title="Warning") %} 
+This is still a draft 
+{% end %}

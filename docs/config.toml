@@ -45,6 +45,7 @@ sections = [
   { name = "about", path = "/about", is_external = false },
 ]
 blog_section_path = "/posts"
+blog_section_note_path = "/notes"
 
 force_theme = false
 back_link_text = "Back"

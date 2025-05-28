@@ -4,4 +4,9 @@ description = ""
 date = 2025-06-08
 +++
 
-[Cross Compile Notes](../../notes/cross-compile)
+{% warning(title="Warning") %} 
+This is still a draft 
+{% end %}
+
+## Action Items
+- Create Introduction Video
