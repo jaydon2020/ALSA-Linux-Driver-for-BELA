@@ -29,8 +29,8 @@ All meetings officially take place on the **Beagleboard Discord channel**, sched
 ---
 
 ## Hardware Update
-I received my development hardware from **Beagleboard.org** on **May 26th, 2025**.  
-Special thanks to **@lorforlinux** for coordinating the shipment
+I received my development hardware from **Beagleboard.org** on **May 26th, 2025**.
+Special thanks to **@lorforlinux** for coordinating the shipment.
 The BELA Cape is expected to arrive a bit later, as it was recently restocked. I’ll proceed with setup and testing as soon as it arrives.
 
 ## Tasks Completed During Bonding Period
