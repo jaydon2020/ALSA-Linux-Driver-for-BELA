@@ -19,4 +19,4 @@ Software Skills: `C` or `Rust`, `Linux` \
 Possible Mentors: [Giulio Moro](https://forum.beagleboard.org/u/giuliomoro) \
 Upstream Repository: [Design files for the Bela cape Rev C](https://github.com/BelaPlatform/bela-hardware/tree/master/cape/bela_cape_rev_C3) \
 References: [The Bela repo shows how to access these devices with a custom driver and DMA running on the PRU](https://github.com/BelaPlatform/Bela/blob/master/pru/pru_rtaudio_irq.p). \
-Proposal: [Submitted Prosoal](https://github.com/jaydon2020/ALSA-Linux-Driver-for-BELA/blob/main/proposal/ALSA-Drivers-for-Bela-Project-Proposal.pdf)
+Proposal: [Submitted Proposals](https://github.com/jaydon2020/ALSA-Linux-Driver-for-BELA/blob/main/proposal/ALSA-Drivers-for-Bela-Project-Proposal.pdf)
