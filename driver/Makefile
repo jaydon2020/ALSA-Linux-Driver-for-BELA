@@ -129,6 +129,7 @@ snd-soc-es8326-y := es8326.o
 snd-soc-es8328-y := es8328.o
 snd-soc-es8328-i2c-y := es8328-i2c.o
 snd-soc-es8328-spi-y := es8328-spi.o
+snd-soc-es9080q := es9080q.o
 snd-soc-framer-y := framer-codec.o
 snd-soc-gtm601-y := gtm601.o
 snd-soc-hdac-hdmi-y := hdac_hdmi.o

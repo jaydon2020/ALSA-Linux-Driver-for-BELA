@@ -1159,6 +1159,10 @@ config SND_SOC_ES8328_SPI
 	depends on SPI_MASTER
 	select SND_SOC_ES8328
 
+config SND_SOC_ES9080Q
+	tristate "Everest Semi ES9080Q CODEC"
+	depends on I2C
+
 config SND_SOC_FRAMER
 	tristate "Framer codec"
 	depends on GENERIC_FRAMER
