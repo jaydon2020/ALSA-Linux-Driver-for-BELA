@@ -6,4 +6,6 @@
 #ifndef _ES9080Q_H
 #define _ES9080Q_H
 
+#define CODEC_REG_STATUS   0x01
+
 #endif
