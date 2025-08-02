@@ -72,9 +72,6 @@
         write-only-addr = <0x4C>;
         reset-gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
         status = "okay";
-        /* ES9080Q is slave and uses TLV320AIC3104's clock */
-        clocks = <&clk_mcasp0>;
-        clock-names = "codec-pll";
     };
 };
 
