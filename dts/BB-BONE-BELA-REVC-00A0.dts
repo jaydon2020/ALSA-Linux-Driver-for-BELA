@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
- */
+* Copyright (C) 2012 Texas Instruments Incorporated - https://www.ti.com/
+*/
 
 /dts-v1/;
 /plugin/;
@@ -9,141 +9,109 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/pinctrl/am33xx.h>
 
-/*
- * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
- */
 &{/chosen} {
-        overlays {
-                BB-BONE-AUDI-02-00A0.bb.org-overlays = __TIMESTAMP__;
-        };
+    overlays {
+        BB-BONE-AUDI-02-00A0.bb.org-overlays = __TIMESTAMP__;
+    };
 };
 
-/ {
-        /*
-         * Free up the pins used by the cape from the pinmux helpers.
-         */
-        fragment@1 {
-                target = <&ocp>;
-                __overlay__ {
-                        P9_25_pinmux { status = "disabled"; };  /* mcasp0_ahclkx */
-                        P9_28_pinmux { status = "disabled"; };  /* mcasp0_axr2 */
-                        P9_29_pinmux { status = "disabled"; };  /* mcasp0_fsx */
-                        P9_30_pinmux { status = "disabled"; };  /* mcasp0_axr0 */
-                        P9_31_pinmux { status = "disabled"; };  /* mcasp0_aclkx */
-                };
-        };
+&{/} {
+    clk_mcasp0_fixed: clk_mcasp0_fixed {
+        #clock-cells = <0>;
+        compatible = "fixed-clock";
+        clock-frequency = <24576000>;
+    };
 
-        fragment@2 {
-                target = <&am33xx_pinmux>;
-                __overlay__ {
-                        bone_audio_cape_audio_pins: pinmux_bone_audio_cape_audio_pins {
-                                pinctrl-single,pins = <
-                                        AM33XX_IOPAD(0x990, PIN_INPUT_PULLDOWN | MUX_MODE0)     /* mcasp0_aclkx.mcasp0_aclkx */
-                                        AM33XX_IOPAD(0x994, PIN_INPUT_PULLDOWN | MUX_MODE0)     /* mcasp0_fsx.mcasp0_fsx, INPUT */
-                                        AM33XX_IOPAD(0x998, PIN_INPUT_PULLDOWN | MUX_MODE0)     /* mcasp0_axr0.mcasp0_axr0 */
-                                        AM33XX_IOPAD(0x99c, PIN_INPUT_PULLDOWN | MUX_MODE2)     /* mcasp0_ahclkr.mcasp0_axr2 */
-                                        AM33XX_IOPAD(0x9ac, PIN_INPUT_PULLDOWN | MUX_MODE0)     /* MCASP0_AHCLKX -> MCASP0_AHCLKX (I2S_MCLK_OUT)- in */
-                                        AM33XX_IOPAD(0x86c, PIN_OUTPUT_PULLDOWN | MUX_MODE7)    /* gpmc_a11.GPIO1_27 */
-                                >;
-                        };
-                };
-        };
+    clk_mcasp0: clk_mcasp0 {
+        #clock-cells = <0>;
+        compatible = "gpio-gate-clock";
+        clocks = <&clk_mcasp0_fixed>;
+        enable-gpios = <&gpio1 27 0>; /* BeagleBone Black Clk enable on GPIO1_27 */
+    };
+};
 
-        fragment@3 {
-                target-path="/";
-                __overlay__ {
-                        clk_mcasp0_fixed: clk_mcasp0_fixed {
-                                #clock-cells = <0>;
-                                compatible = "fixed-clock";
-                                clock-frequency = <12288000>;
-                        };
+&am33xx_pinmux {
+    bone_audio_cape_audio_pins: pinmux_bone_audio_cape_audio_pins {
+        pinctrl-single,pins = <
+                AM33XX_IOPAD(0x990, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_aclkx.mcasp0_aclkx */
+                AM33XX_IOPAD(0x994, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_fsx.mcasp0_fsx, INPUT */
+                AM33XX_IOPAD(0x998, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* mcasp0_axr0.mcasp0_axr0 */
+                AM33XX_IOPAD(0x99c, PIN_INPUT_PULLDOWN | MUX_MODE2)	/* mcasp0_ahclkr.mcasp0_axr2 */
+                AM33XX_IOPAD(0x9ac, PIN_INPUT_PULLDOWN | MUX_MODE0)	/* MCASP0_AHCLKX -> MCASP0_AHCLKX (I2S_MCLK_OUT)- in */
+                AM33XX_IOPAD(0x86c, PIN_OUTPUT_PULLDOWN | MUX_MODE7)	/* gpmc_a11.GPIO1_27 */
+                AM33XX_IOPAD(0x9a4, PIN_OUTPUT_PULLDOWN | MUX_MODE3)	/* mcasp0_fsr.mcasp0_axr3 - For ES9080Q */
+        >;
+    };
+};
 
-                        clk_mcasp0: clk_mcasp0 {
-                                #clock-cells = <0>;
-                                compatible = "gpio-gate-clock";
-                                clocks = <&clk_mcasp0_fixed>;
-                                enable-gpios = <&gpio1 27 0>; /* BeagleBone Black Clk enable on GPIO1_27 */
-                        };
+&ocp {
+    P9_25_pinmux { status = "disabled"; };	/* mcasp0_ahclkx */
+    P9_28_pinmux { status = "disabled"; };	/* mcasp0_axr2 */
+    P9_29_pinmux { status = "disabled"; };	/* mcasp0_fsx */
+    P9_30_pinmux { status = "disabled"; };	/* mcasp0_axr0 */
+    P9_31_pinmux { status = "disabled"; };	/* mcasp0_aclkx */
+    P8_33_pinmux { status = "disabled"; };	/* mcasp0_axr3 - For ES9080Q */
+};
 
-                        sound {
-                                compatible = "simple-audio-card";
-                                simple-audio-card,name = "AudioCape Rev B";
-                                simple-audio-card,widgets =
-                                        "Headphone", "Headphone Jack",
-                                        "Line", "Line In";
-                                simple-audio-card,routing =
-                                        "Headphone Jack",       "HPLOUT",
-                                        "Headphone Jack",       "HPROUT",
-                                        "LINE1L",               "Line In",
-                                        "LINE1R",               "Line In";
-                                simple-audio-card,format = "dsp_b";
-                                simple-audio-card,bitclock-master = <&sound_master>;
-                                simple-audio-card,frame-master = <&sound_master>;
-                                simple-audio-card,bitclock-inversion;
+&i2c2 {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    status = "okay";
 
-                                simple-audio-card,cpu {
-                                        sound-dai = <&mcasp0>;
-                                        dai-tdm-slot-num = <8>;
-                                        dai-tdm-slot-width = <32>;
-                                        dai-tdm-slot-tx-mask = <1 1 0 0 0 0 0 0>;
-                                        dai-tdm-slot-rx-mask = <1 1 0 0 0 0 0 0>;
-                                };
+    tlv320aic3104: tlv320aic3104@18 {
+        #sound-dai-cells = <0>;
+        compatible = "ti,tlv320aic3104";
+        reg = <0x18>;
+        status = "okay";
+    };
 
-                                sound_master: simple-audio-card,codec {
-                                        #sound-dai-cells = <0>;
-                                        sound-dai = <&tlv320aic3104>;
-                                        clocks = <&clk_mcasp0>;
-                                        clock-names = "mclk";
-                                        dai-tdm-slot-num = <8>;
-                                        dai-tdm-slot-width = <32>;
-                                        dai-tdm-slot-tx-mask = <1 1 0 0 0 0 0 0>;
-                                        dai-tdm-slot-rx-mask = <1 1 0 0 0 0 0 0>;
-                                };
-                        };
-                };
-        };
+    es9080q: codec@48 {
+        #sound-dai-cells = <0>;
+        compatible = "ess,es9080q";
+        reg = <0x48>;
+        write-only-addr = <0x4C>;
+        reset-gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
+        status = "okay";
+        /* ES9080Q is slave and uses TLV320AIC3104's clock */
+        clocks = <&clk_mcasp0>;
+        clock-names = "codec-pll";
+    };
+};
 
-        fragment@4 {
-                target = <&i2c2>;
-                __overlay__ {
-                        #address-cells = <1>;
-                        #size-cells = <0>;
-                        clock-frequency = <100000>;
-                        status = "okay";
+&mcasp0 {
+    #sound-dai-cells = <0>;
+    pinctrl-names = "default";
+    pinctrl-0 = <&bone_audio_cape_audio_pins>;
+    status = "okay";
+    op-mode = <0>;          /* MCASP_IIS_MODE */
+    tdm-slots = <16>;
+    num-serializer = <16>;
+    serial-dir = <	/* 0: INACTIVE, 1: TX, 2: RX */
+        2 0 1 0
+        0 0 0 0
+        0 0 0 0
+        0 0 0 0
+    >;
+    tx-num-evt = <32>;
+    rx-num-evt = <32>;
+};
 
-                        tlv320aic3104: tlv320aic3104@18 {
-                                #sound-dai-cells = <0>;
-                                compatible = "ti,tlv320aic3104";
-                                reg = <0x18>;
-                        };
-                        es9080q: es9080q@48{
-                                compatible = "ess,es9080q";
-                                reg = <0x48>;
-                                write-only-addr = <0x4C>; // Write-only address
-                                reset-gpios = <&gpio0 11 GPIO_ACTIVE_HIGH>;
-                                #sound-dai-cells = <0>;
-                        };
-                };
-        };
+&{/} {
+    sound {
+        compatible = "bela,audio-cape";
+        model = "Bela Audio Cape";
 
-        fragment@5 {
-                target = <&mcasp0>;
-                __overlay__ {
-                        #sound-dai-cells = <0>;
-                        pinctrl-names = "default";
-                        pinctrl-0 = <&bone_audio_cape_audio_pins>;
-                        status = "okay";
-                        op-mode = <0>;  /* MCASP_IIS_MODE */
-                        tdm-slots = <8>;
-                        num-serializer = <16>;
-                        serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-                                        2 2 2 2
-                                        2 2 2 2
-                                        1 1 1 1
-                                        1 1 1 1
-                                >;
-                        tx-num-evt = <1>;
-                        rx-num-evt = <1>;
-                };
-        };
+        /* CPU DAI */
+        cpu-dai = <&mcasp0>;
+
+        /* Codec DAIs */
+        aic3104-codec = <&tlv320aic3104>;
+        es9080q-codec = <&es9080q>;
+
+        /* Clock */
+        clocks = <&clk_mcasp0>;
+        clock-names = "mclk";
+
+        status = "okay";
+    };
 };
