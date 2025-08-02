@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  
+  
+    
+  
+  <meta name="description" content="Building on our Preempt-RT kernel for μs-level determinism">
+
+  <title>Integrating Xenomai 4 on BeagleY-AI: Hard Real-Time Linux</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/apple-touch-icon.png">
+  
+  <style>
+
+  /* light mode colors */
+  body {
+    --primary-color: #5871a2;
+    --primary-pale-color: #5871a233;
+    --primary-decoration-color: #5871a210;
+    --bg-color: #ffffff;
+    --text-color: #2f3030;
+    --text-pale-color: #767676;
+    --text-decoration-color: #a9a9a9;
+    --highlight-mark-color: #5f75b020;
+
+    --callout-note-color: #5871a2;
+    --callout-tip-color: #268556;
+    --callout-important-color: #885fc9;
+    --callout-warning-color: #ab6632;
+    --callout-caution-color: #c64e4e;
+  }
+
+  /* dark mode colors */
+  body.dark {
+    --primary-color: #6f8fd1;
+    --primary-pale-color: #6f8fd166;
+    --primary-decoration-color: #6f8fd112;
+    --bg-color: #1c1c1c;
+    --text-color: #c1c1c1;
+    --text-pale-color: #848484;
+    --text-decoration-color: #5f5f5f;
+    --highlight-mark-color: #8296cb3b;
+
+    --callout-note-color: #6f8fd1;
+    --callout-tip-color: #47976f;
+    --callout-important-color: #9776cd;
+    --callout-warning-color: #ad7a52;
+    --callout-caution-color: #d06161;
+  }
+
+  /* typography */
+  body {
+    --main-font: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --homepage-max-width: 768px;
+    --main-max-width: 768px;
+    --avatar-size: 60px;
+    --font-size: 16px;
+    --line-height: 1.75;
+    --img-border-radius: 0px;
+    --detail-border-radius: 0px;
+    --dark-mode-img-brightness: 0.75;
+    --dark-mode-chart-brightness: 0.75;
+    --inline-code-border-radius: 2px;
+    --inline-code-bg-color: var(--primary-decoration-color);
+    --block-code-border-radius: 0px;
+    --block-code-border-color: var(--primary-color);
+    --detail-border-color: var(--primary-color);
+  }
+
+</style>
+
+  <link rel="stylesheet" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/main.css">
+  
+
+<link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
+
+
+
+  
+</head>
+
+<body class="post">
+  
+  <script>
+    const theme = sessionStorage.getItem('theme');
+    const match = window.matchMedia("(prefers-color-scheme: dark)").matches
+    if ((theme && theme == 'dark') || (!theme && match)) {
+      document.body.classList.add('dark');
+      const hl = document.querySelector('link#hl');
+      if (hl) hl.href = 'https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/hl-dark.css';
+    }
+  </script>
+  
+  
+<div id="wrapper">
+  <div id="blank"></div>
+  <aside>
+    
+    
+    <nav>
+      <ul>
+        
+        <li>
+          <a class="h2" href="#why-xenomai">Why Xenomai?</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#prerequisites">Prerequisites</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#step-1-obtain-kernel-sources">Step 1: Obtain Kernel Sources</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#1-1-clone-beagleboard-s-linux-kernel">1.1 Clone Beagleboard’s Linux Kernel</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#1-2-fetch-xenomai-evl-patches">1.2 Fetch Xenomai EVL Patches</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#step-2-merge-evl-into-ti-kernel">Step 2: Merge EVL into TI Kernel</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#2-1-create-a-merge-branch">2.1 Create a Merge Branch</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#2-2-resolve-merge-conflicts">2.2 Resolve Merge Conflicts</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#step-3-configure-the-kernel">Step 3: Configure the Kernel</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#3-1-start-with-beagley-s-default-config">3.1 Start with BeagleY’s Default Config</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#3-2-enable-xenomai-evl">3.2 Enable Xenomai EVL</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#step-4-build-the-kernel">Step 4: Build the Kernel</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#4-1-compile-kernel-modules">4.1 Compile Kernel &amp; Modules</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#4-2-package-artifacts">4.2 Package Artifacts</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#step-5-deploy-evl-kernel">Step 5: Deploy EVL Kernel</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#5-1-install-on-target">5.1 Install on Target</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#step-6-build-install-xenomai-libraries">Step 6: Build &amp; Install Xenomai Libraries</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#6-1-clone-source">6.1 Clone Source</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#6-2-build-libevl">6.2 Build libevl</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#6-3-validate-with-evl-test">6.3 Validate with EVL test</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#conclusion">Conclusion</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#references">References</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </nav>
+    
+    
+    <button id="back-to-top" aria-label="back to top">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+
+    </button>
+    
+  </aside>
+  <main>
+    
+<header>
+  <nav>
+    <a href="https:&#x2F;&#x2F;jaydon2020.github.io&#x2F;ALSA-Linux-Driver-for-BELA&#x2F;notes">← Back</a>
+  </nav>
+</header>
+
+
+    <div>
+      
+      
+      
+      
+      <div id="copy-cfg" style="display: none;" data-copy-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+" data-check-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+"></div>
+      
+      <article class="prose">
+        <h1>Integrating Xenomai 4 on BeagleY-AI: Hard Real-Time Linux</h1>
+        <div id="post-info">
+          <div id="date">
+            <span id="publish">May 28, 2025</span>
+            </div>
+
+          
+          <div id="tags">
+            <a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/beagley-ai"><span>#</span>BeagleY-AI</a><a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/linux-kernel"><span>#</span>Linux Kernel</a><a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/xenomai4"><span>#</span>Xenomai4</a>
+          </div>
+          
+        </div>
+
+        
+        
+
+        
+
+        <h3 id="why-xenomai"><strong>Why Xenomai?</strong><a class="zola-anchor" href="#why-xenomai" aria-label="Anchor link for: why-xenomai" style="visibility: hidden;"></a>
+</h3>
+<p>While Preempt-RT provides soft real-time capabilities, <strong>Xenomai 4</strong> delivers <strong>hard real-time performance</strong> via its EVL (Evolvable Linux) core. This dual-kernel approach achieves:</p>
+<ul>
+<li><strong>Sub-10μs latency</strong> for time-critical tasks</li>
+<li><strong>Deterministic interrupt handling</strong></li>
+<li><strong>Coexistence</strong> of real-time and Linux applications</li>
+</ul>
+<hr />
+<h2 id="prerequisites"><strong>Prerequisites</strong><a class="zola-anchor" href="#prerequisites" aria-label="Anchor link for: prerequisites" style="visibility: hidden;"></a>
+</h2>
+<ol>
+<li><strong>BeagleY-AI</strong> running <a rel="noopener nofollow noreferrer" target="_blank" href="https://www.beagleboard.org/distros/beagley-ai-debian-12-11-2025-05-21-xfce-v6-6-x-ti">Debian 12.11 2025-05-21 XFCE</a></li>
+<li><strong>Host Machine</strong>: Ubuntu 22.04+ (64-bit) with ARM cross-compiler</li>
+</ol>
+<hr />
+<h2 id="step-1-obtain-kernel-sources"><strong>Step 1: Obtain Kernel Sources</strong><a class="zola-anchor" href="#step-1-obtain-kernel-sources" aria-label="Anchor link for: step-1-obtain-kernel-sources" style="visibility: hidden;"></a>
+</h2>
+<p><em>(Host Machine)</em></p>
+<h3 id="1-1-clone-beagleboard-s-linux-kernel"><strong>1.1 Clone Beagleboard’s Linux Kernel</strong><a class="zola-anchor" href="#1-1-clone-beagleboard-s-linux-kernel" aria-label="Anchor link for: 1-1-clone-beagleboard-s-linux-kernel" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> clone https://github.com/beagleboard/linux<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>b</span> 6.6.58-ti-rt-arm64-r27</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> linux</span>
+</span></code></pre>
+<h3 id="1-2-fetch-xenomai-evl-patches"><strong>1.2 Fetch Xenomai EVL Patches</strong><a class="zola-anchor" href="#1-2-fetch-xenomai-evl-patches" aria-label="Anchor link for: 1-2-fetch-xenomai-evl-patches" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> remote add xenomai https://source.denx.de/Xenomai/xenomai4/linux-evl.git</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> fetch xenomai v6.6.y-evl-rebase</span>
+</span></code></pre>
+<h2 id="step-2-merge-evl-into-ti-kernel"><strong>Step 2: Merge EVL into TI Kernel</strong><a class="zola-anchor" href="#step-2-merge-evl-into-ti-kernel" aria-label="Anchor link for: step-2-merge-evl-into-ti-kernel" style="visibility: hidden;"></a>
+</h2>
+<h3 id="2-1-create-a-merge-branch"><strong>2.1 Create a Merge Branch</strong><a class="zola-anchor" href="#2-1-create-a-merge-branch" aria-label="Anchor link for: 2-1-create-a-merge-branch" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> checkout<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>b</span> ti-xenomai-merge</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> merge xenomai/v6.6.y-evl-rebase</span>
+</span></code></pre>
+<h3 id="2-2-resolve-merge-conflicts"><strong>2.2 Resolve Merge Conflicts</strong><a class="zola-anchor" href="#2-2-resolve-merge-conflicts" aria-label="Anchor link for: 2-2-resolve-merge-conflicts" style="visibility: hidden;"></a>
+</h3>
+<p>Focus on:</p>
+<ul>
+<li><strong><code>arch/arm64</code></strong> (TI-specific changes vs. Xenomai’s EVL modifications)</li>
+<li><strong><code>drivers/</code></strong> (e.g., SPI, PWM, or Ethernet drivers)</li>
+<li><strong><code>kernel/sched</code></strong> (scheduler conflicts between RT and EVL)</li>
+</ul>
+<hr />
+<h2 id="step-3-configure-the-kernel"><strong>Step 3: Configure the Kernel</strong><a class="zola-anchor" href="#step-3-configure-the-kernel" aria-label="Anchor link for: step-3-configure-the-kernel" style="visibility: hidden;"></a>
+</h2>
+<h3 id="3-1-start-with-beagley-s-default-config"><strong>3.1 Start with BeagleY’s Default Config</strong><a class="zola-anchor" href="#3-1-start-with-beagley-s-default-config" aria-label="Anchor link for: 3-1-start-with-beagley-s-default-config" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">make</span></span><span class="z-meta z-function-call z-arguments z-shell"> distclean</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">make</span></span><span class="z-meta z-function-call z-arguments z-shell"> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bb.org_defconfig</span>
+</span></code></pre>
+<h3 id="3-2-enable-xenomai-evl"><strong>3.2 Enable Xenomai EVL</strong><a class="zola-anchor" href="#3-2-enable-xenomai-evl" aria-label="Anchor link for: 3-2-enable-xenomai-evl" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">make</span></span><span class="z-meta z-function-call z-arguments z-shell"> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig</span>
+</span></code></pre>
+<p><strong>Key Options</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">-</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>Kernel Features                                                                                              </span>
+</span><span class="z-source z-shell z-bash">    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">-</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span> <span class="z-keyword z-control z-regexp z-set z-begin z-shell">[</span><span class="z-keyword z-operator z-regexp z-quantifier z-shell">*</span><span class="z-keyword z-control z-regexp z-set z-end z-shell">]</span>EVL real-time core</span>
+</span><span class="z-source z-shell z-bash">        <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">[*]</span></span><span class="z-meta z-function-call z-arguments z-shell">   Enable quota-based scheduling </span>
+</span><span class="z-source z-shell z-bash">        <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">[*]</span></span><span class="z-meta z-function-call z-arguments z-shell">   Enable temporal partitioning policy</span>
+</span><span class="z-source z-shell z-bash">        <span class="z-punctuation z-definition z-compound z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">4</span></span><span class="z-punctuation z-definition z-compound z-end z-shell">)</span><span class="z-meta z-function-call z-arguments z-shell">     Number of partitions</span>
+</span><span class="z-source z-shell z-bash">        <span class="z-support z-function z-test z-begin z-shell">[</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-support z-function z-test z-end z-shell">]</span></span>   <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Optimize</span></span><span class="z-meta z-function-call z-arguments z-shell"> for intra-core concurrency </span>
+</span><span class="z-source z-shell z-bash">        <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">[*]</span></span><span class="z-meta z-function-call z-arguments z-shell">   Collect runtime statistics</span>
+</span><span class="z-source z-shell z-bash">        <span class="z-support z-function z-test z-begin z-shell">[</span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-support z-function z-test z-end z-shell">]</span></span>   <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Out-of-band</span></span><span class="z-meta z-function-call z-arguments z-shell"> networking (EXPERIMENTAL</span><span class="z-meta z-function-call z-shell"></span>)
+</span><span class="z-source z-shell z-bash">        <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Fixed</span></span><span class="z-meta z-function-call z-arguments z-shell"> sizes and limits  ---<span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>
+</span></span><span class="z-source z-shell z-bash">        <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Pre-calibrated</span></span><span class="z-meta z-function-call z-arguments z-shell"> latency  ---<span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>
+</span></span><span class="z-source z-shell z-bash">        <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">[*]</span></span><span class="z-meta z-function-call z-arguments z-shell">   Debug support  ---<span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>          
+</span></span></code></pre>
+<hr />
+<h2 id="step-4-build-the-kernel"><strong>Step 4: Build the Kernel</strong><a class="zola-anchor" href="#step-4-build-the-kernel" aria-label="Anchor link for: step-4-build-the-kernel" style="visibility: hidden;"></a>
+</h2>
+<h3 id="4-1-compile-kernel-modules"><strong>4.1 Compile Kernel &amp; Modules</strong><a class="zola-anchor" href="#4-1-compile-kernel-modules" aria-label="Anchor link for: 4-1-compile-kernel-modules" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">make</span></span><span class="z-meta z-function-call z-arguments z-shell"> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell">    LOCALVERSION=<span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>-xenomai<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>j<span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">nproc</span></span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span></span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">make</span></span><span class="z-meta z-function-call z-arguments z-shell"> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell">     INSTALL_MOD_PATH=./modules modules_install</span>
+</span></code></pre>
+<h3 id="4-2-package-artifacts"><strong>4.2 Package Artifacts</strong><a class="zola-anchor" href="#4-2-package-artifacts" aria-label="Anchor link for: 4-2-package-artifacts" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">tar</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>czf</span> xenomai-kernel-6.6.69-xenomai.tar.gz <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell">    arch/arm64/boot/Image modules/lib/modules/6.6.69-xenomai</span>
+</span></code></pre>
+<hr />
+<h2 id="step-5-deploy-evl-kernel"><strong>Step 5: Deploy EVL Kernel</strong><a class="zola-anchor" href="#step-5-deploy-evl-kernel" aria-label="Anchor link for: step-5-deploy-evl-kernel" style="visibility: hidden;"></a>
+</h2>
+<h3 id="5-1-install-on-target"><strong>5.1 Install on Target</strong><a class="zola-anchor" href="#5-1-install-on-target" aria-label="Anchor link for: 5-1-install-on-target" style="visibility: hidden;"></a>
+</h3>
+<p><em>(Target Device BeagleY-AI)</em></p>
+<ul>
+<li>Copy <code>arch/arm64/boot/Image</code> to <code>/BOOT/</code></li>
+<li>Extract modules to <code>/lib/modules</code></li>
+<li>Update <code>/boot/firmware/extlinux/extlinux.conf</code>:</li>
+</ul>
+<pre data-lang="ini" class="language-ini z-code"><code class="language-ini" data-lang="ini"><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig"><span class="z-variable z-parameter z-genconfig">label</span> </span>microSD (default)
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">kernel</span> </span><span class="z-keyword z-operator z-genconfig">/</span>Image
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">append</span> </span>console<span class="z-keyword z-operator z-genconfig">=</span>ttyS2<span class="z-keyword z-operator z-genconfig">,</span>115200n8 root<span class="z-keyword z-operator z-genconfig">=</span><span class="z-keyword z-operator z-genconfig">/</span>dev<span class="z-keyword z-operator z-genconfig">/</span>mmcblk1p3 ro rootfstype<span class="z-keyword z-operator z-genconfig">=</span>ext4 resume<span class="z-keyword z-operator z-genconfig">=</span><span class="z-keyword z-operator z-genconfig">/</span>dev<span class="z-keyword z-operator z-genconfig">/</span>mmcblk1p2 rootwait net<span class="z-keyword z-operator z-genconfig">.</span>ifnames<span class="z-keyword z-operator z-genconfig">=</span><span class="z-constant z-numeric z-genconfig">0</span> quiet
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">fdtdir</span> </span><span class="z-keyword z-operator z-genconfig">/</span>
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">fdt</span> </span><span class="z-keyword z-operator z-genconfig">/</span>ti<span class="z-keyword z-operator z-genconfig">/</span>k3<span class="z-keyword z-operator z-genconfig">-</span>am67a<span class="z-keyword z-operator z-genconfig">-</span>beagley<span class="z-keyword z-operator z-genconfig">-</span>ai<span class="z-keyword z-operator z-genconfig">.</span>dtb
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">fdtoverlays</span> </span><span class="z-keyword z-operator z-genconfig">/</span>overlays<span class="z-keyword z-operator z-genconfig">/</span>k3<span class="z-keyword z-operator z-genconfig">-</span>am67a<span class="z-keyword z-operator z-genconfig">-</span>beagley<span class="z-keyword z-operator z-genconfig">-</span>ai<span class="z-keyword z-operator z-genconfig">-</span>csi0<span class="z-keyword z-operator z-genconfig">-</span>tevs<span class="z-keyword z-operator z-genconfig">-</span>rpi22<span class="z-keyword z-operator z-genconfig">.</span>dtbo
+</span><span class="z-source z-genconfig"><span class="z-meta z-param z-genconfig">    <span class="z-variable z-parameter z-genconfig">initrd</span> </span><span class="z-keyword z-operator z-genconfig">/</span>initrd<span class="z-keyword z-operator z-genconfig">.</span>img
+</span></code></pre>
+<p>Validate the kernel version with <code>uname -r</code> and will get:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> uname<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>r</span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">6.6.69-xenomai</span></span>
+</span></code></pre>
+<h2 id="step-6-build-install-xenomai-libraries"><strong>Step 6: Build &amp; Install Xenomai Libraries</strong><a class="zola-anchor" href="#step-6-build-install-xenomai-libraries" aria-label="Anchor link for: step-6-build-install-xenomai-libraries" style="visibility: hidden;"></a>
+</h2>
+<p><em>(Native on BeagleY-AI)</em></p>
+<h3 id="6-1-clone-source"><strong>6.1 Clone Source</strong><a class="zola-anchor" href="#6-1-clone-source" aria-label="Anchor link for: 6-1-clone-source" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">mkdir</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-meta z-group z-expansion z-tilde"><span class="z-variable z-language z-tilde z-shell">~</span></span>/xenomai</span> <span class="z-keyword z-operator z-logical z-and z-shell">&amp;&amp;</span> <span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-meta z-group z-expansion z-tilde"><span class="z-variable z-language z-tilde z-shell">~</span></span>/xenomai  </span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> clone https://source.denx.de/Xenomai/xenomai4/libevl.git  </span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> clone https://source.denx.de/Xenomai/xenomai4/linux-evl.git <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">  --</span>depth</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>1<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>branch</span> v6.6.y-evl-rebase  </span>
+</span></code></pre>
+<h3 id="6-2-build-libevl"><strong>6.2 Build libevl</strong><a class="zola-anchor" href="#6-2-build-libevl" aria-label="Anchor link for: 6-2-build-libevl" style="visibility: hidden;"></a>
+</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">mkdir</span></span><span class="z-meta z-function-call z-arguments z-shell"> build</span> <span class="z-keyword z-operator z-logical z-and z-shell">&amp;&amp;</span> <span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> build  </span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">meson</span></span><span class="z-meta z-function-call z-arguments z-shell"> setup<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>Dbuildtype</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>release<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>Dprefix</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span>/usr <span class="z-punctuation z-separator z-continuation z-line z-shell">\
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell">            -</span>Duapi</span><span class="z-keyword z-operator z-assignment z-option z-shell">=</span><span class="z-meta z-group z-expansion z-tilde"><span class="z-variable z-language z-tilde z-shell">~</span></span>/xenomai/linux-evl ../libevl  </span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">meson</span></span><span class="z-meta z-function-call z-arguments z-shell"> compile  </span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> ninja install  </span>
+</span></code></pre>
+<h2 id="6-3-validate-with-evl-test"><strong>6.3 Validate with EVL test</strong><a class="zola-anchor" href="#6-3-validate-with-evl-test" aria-label="Anchor link for: 6-3-validate-with-evl-test" style="visibility: hidden;"></a>
+</h2>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> evl test</span>
+</span></code></pre>
+<p><strong>Expected Output</strong>:</p>
+<pre data-lang="plaintext" class="language-plaintext z-code"><code class="language-plaintext" data-lang="plaintext"><span class="z-text z-plain">$ sudo evl test
+</span><span class="z-text z-plain">basic-xbuf: OK
+</span><span class="z-text z-plain">clock-timer-periodic: OK
+</span><span class="z-text z-plain">clone-fork-exec: OK
+</span><span class="z-text z-plain">detach-self: OK
+</span><span class="z-text z-plain">duplicate-element: OK
+</span><span class="z-text z-plain">element-visibility: OK
+</span><span class="z-text z-plain">fault: OK
+</span><span class="z-text z-plain">fpu-preload: OK
+</span><span class="z-text z-plain">fpu-stress: OK
+</span><span class="z-text z-plain">heap-torture: OK
+</span><span class="z-text z-plain">mapfd: OK
+</span><span class="z-text z-plain">monitor-deadlock: OK
+</span><span class="z-text z-plain">monitor-deboost-stress: OK
+</span><span class="z-text z-plain">monitor-event: OK
+</span><span class="z-text z-plain">monitor-event-targeted: OK
+</span><span class="z-text z-plain">monitor-event-untrack: OK
+</span><span class="z-text z-plain">monitor-flags: OK
+</span><span class="z-text z-plain">monitor-flags-broadcast: OK
+</span><span class="z-text z-plain">monitor-flags-inband: OK
+</span><span class="z-text z-plain">monitor-pi: OK
+</span><span class="z-text z-plain">monitor-pi-deadlock: OK
+</span><span class="z-text z-plain">monitor-pi-deboost: OK
+</span><span class="z-text z-plain">monitor-pi-stress: OK
+</span><span class="z-text z-plain">monitor-pp-dynamic: OK
+</span><span class="z-text z-plain">monitor-pp-lazy: OK
+</span><span class="z-text z-plain">monitor-pp-lower: OK
+</span><span class="z-text z-plain">monitor-pp-nested: OK
+</span><span class="z-text z-plain">monitor-pp-pi: OK
+</span><span class="z-text z-plain">monitor-pp-raise: OK
+</span><span class="z-text z-plain">monitor-pp-tryenter: OK
+</span><span class="z-text z-plain">monitor-pp-weak: OK
+</span><span class="z-text z-plain">monitor-recursive: OK
+</span><span class="z-text z-plain">monitor-steal: OK
+</span><span class="z-text z-plain">monitor-trylock: OK
+</span><span class="z-text z-plain">monitor-wait-multiple: OK
+</span><span class="z-text z-plain">monitor-wait-requeue: OK
+</span><span class="z-text z-plain">observable-hm: OK
+</span><span class="z-text z-plain">observable-inband: OK
+</span><span class="z-text z-plain">observable-onchange: OK
+</span><span class="z-text z-plain">observable-oob: OK
+</span><span class="z-text z-plain">observable-race: OK
+</span><span class="z-text z-plain">observable-thread: OK
+</span><span class="z-text z-plain">observable-unicast: OK
+</span><span class="z-text z-plain">poll-close: OK
+</span><span class="z-text z-plain">poll-flags: OK
+</span><span class="z-text z-plain">poll-many: OK
+</span><span class="z-text z-plain">poll-multiple: OK
+</span><span class="z-text z-plain">poll-nested: OK
+</span><span class="z-text z-plain">poll-observable-inband: OK
+</span><span class="z-text z-plain">poll-observable-oob: OK
+</span><span class="z-text z-plain">poll-sem: OK
+</span><span class="z-text z-plain">poll-xbuf: OK
+</span><span class="z-text z-plain">proxy-echo: OK
+</span><span class="z-text z-plain">proxy-eventfd: OK
+</span><span class="z-text z-plain">proxy-pipe: OK
+</span><span class="z-text z-plain">proxy-poll: OK
+</span><span class="z-text z-plain">ring-spray: OK
+</span><span class="z-text z-plain">rwlock-read: OK
+</span><span class="z-text z-plain">rwlock-write: OK
+</span><span class="z-text z-plain">sched-quota-accuracy: 99.0%
+</span><span class="z-text z-plain">sched-tp-accuracy: OK
+</span><span class="z-text z-plain">sched-tp-overrun: OK
+</span><span class="z-text z-plain">sem-close-unblock: OK
+</span><span class="z-text z-plain">sem-flush: OK
+</span><span class="z-text z-plain">sem-timedwait: OK
+</span><span class="z-text z-plain">sem-wait: OK
+</span><span class="z-text z-plain">simple-clone: OK
+</span><span class="z-text z-plain">stax-lock: OK
+</span><span class="z-text z-plain">stax-warn: OK
+</span><span class="z-text z-plain">thread-mode-bits: OK
+</span></code></pre>
+<p><img src="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/xenomai4-beagleyai/image.png" alt="image" /></p>
+<hr />
+<h3 id="conclusion"><strong>Conclusion</strong><a class="zola-anchor" href="#conclusion" aria-label="Anchor link for: conclusion" style="visibility: hidden;"></a>
+</h3>
+<ul>
+<li>Coming soon</li>
+</ul>
+<p><strong>Next Steps</strong>:</p>
+<ul>
+<li>Coming soon</li>
+</ul>
+<hr />
+<h3 id="references"><strong>References</strong><a class="zola-anchor" href="#references" aria-label="Anchor link for: references" style="visibility: hidden;"></a>
+</h3>
+<ol>
+<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://xenomai.org/documentation/">Xenomai Official Documentation</a></li>
+<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://source.denx.de/Xenomai/xenomai4/linux-evl">EVL Kernel Patches</a></li>
+<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://www.osadl.org/Realtime-Linux.projects-realtime-linux.0.html">Real-Time Systems Design Guide</a></li>
+</ol>
+
+      </article>
+
+      
+      
+
+      
+      
+    </div>
+
+    
+
+
+<footer>
+  <div class="left">
+    <div class="copyright">
+      © 2025 Jian De
+      
+      <span>|</span>
+      Built with <a href="https://www.getzola.org" rel="noreferrer" target="_blank">zola</a> and <a href="https://github.com/isunjn/serene" rel="noreferrer" target="_blank">serene</a>
+      
+    </div>
+  </div>
+
+  <div class="right">
+    
+
+    
+    
+    
+    <button id="theme-toggle" aria-label="theme switch">
+      <span class="moon-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z" fill="currentColor"></path></svg>
+</span>
+      <span class="sun-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z" fill="currentColor"></path></svg>
+</span>
+    </button>
+    
+  </div>
+</footer>
+
+
+
+  </main>
+</div>
+
+  
+<script src="/js/lightense.min.js"></script>
+
+
+  <script src="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/js/main.js"></script>
+</body>
+
+</html>

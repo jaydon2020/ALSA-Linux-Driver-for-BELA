@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  
+  
+    
+  
+  <meta name="description" content="Collection of technical notes.">
+
+  <title>Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/apple-touch-icon.png">
+  
+  <style>
+
+  /* light mode colors */
+  body {
+    --primary-color: #5871a2;
+    --primary-pale-color: #5871a233;
+    --primary-decoration-color: #5871a210;
+    --bg-color: #ffffff;
+    --text-color: #2f3030;
+    --text-pale-color: #767676;
+    --text-decoration-color: #a9a9a9;
+    --highlight-mark-color: #5f75b020;
+
+    --callout-note-color: #5871a2;
+    --callout-tip-color: #268556;
+    --callout-important-color: #885fc9;
+    --callout-warning-color: #ab6632;
+    --callout-caution-color: #c64e4e;
+  }
+
+  /* dark mode colors */
+  body.dark {
+    --primary-color: #6f8fd1;
+    --primary-pale-color: #6f8fd166;
+    --primary-decoration-color: #6f8fd112;
+    --bg-color: #1c1c1c;
+    --text-color: #c1c1c1;
+    --text-pale-color: #848484;
+    --text-decoration-color: #5f5f5f;
+    --highlight-mark-color: #8296cb3b;
+
+    --callout-note-color: #6f8fd1;
+    --callout-tip-color: #47976f;
+    --callout-important-color: #9776cd;
+    --callout-warning-color: #ad7a52;
+    --callout-caution-color: #d06161;
+  }
+
+  /* typography */
+  body {
+    --main-font: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --homepage-max-width: 768px;
+    --main-max-width: 768px;
+    --avatar-size: 60px;
+    --font-size: 16px;
+    --line-height: 1.75;
+    --img-border-radius: 0px;
+    --detail-border-radius: 0px;
+    --dark-mode-img-brightness: 0.75;
+    --dark-mode-chart-brightness: 0.75;
+    --inline-code-border-radius: 2px;
+    --inline-code-bg-color: var(--primary-decoration-color);
+    --block-code-border-radius: 0px;
+    --block-code-border-color: var(--primary-color);
+    --detail-border-color: var(--primary-color);
+  }
+
+</style>
+
+  <link rel="stylesheet" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/main.css">
+  
+
+<link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
+
+
+
+  
+</head>
+
+<body class="post">
+  
+  <script>
+    const theme = sessionStorage.getItem('theme');
+    const match = window.matchMedia("(prefers-color-scheme: dark)").matches
+    if ((theme && theme == 'dark') || (!theme && match)) {
+      document.body.classList.add('dark');
+      const hl = document.querySelector('link#hl');
+      if (hl) hl.href = 'https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/hl-dark.css';
+    }
+  </script>
+  
+  
+<div id="wrapper">
+  <div id="blank"></div>
+  <aside>
+    
+    
+    <nav>
+      <ul>
+        
+        <li>
+          <a class="h2" href="#porting-respeaker-2-mics-pi-hat-v2-to-beagley-ai">Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#hardware-overview">Hardware Overview</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#setup-process">Setup Process</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#device-tree-configuration">Device Tree Configuration</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#basic-recording-playback">Basic Recording &amp; Playback</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#on-board-user-leds-and-button">On-board User LEDs and Button</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#full-porting-process-and-documentation">Full porting process and documentation</a>
+            </li>
+            
+            <li>
+              <a class="h3" href="#refrenecs">Refrenecs</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </nav>
+    
+    
+    <button id="back-to-top" aria-label="back to top">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+
+    </button>
+    
+  </aside>
+  <main>
+    
+<header>
+  <nav>
+    <a href="https:&#x2F;&#x2F;jaydon2020.github.io&#x2F;ALSA-Linux-Driver-for-BELA&#x2F;notes">← Back</a>
+  </nav>
+</header>
+
+
+    <div>
+      
+      
+      
+      
+      <div id="copy-cfg" style="display: none;" data-copy-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+" data-check-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+"></div>
+      
+      <article class="prose">
+        <h1>Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI</h1>
+        <div id="post-info">
+          <div id="date">
+            <span id="publish">May 10, 2025</span>
+            </div>
+
+          
+          <div id="tags">
+            <a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/beagley-ai"><span>#</span>BeagleY-AI</a><a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/alsa"><span>#</span>ALSA</a><a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/tlv320aic3104"><span>#</span>TLV320AIC3104</a>
+          </div>
+          
+        </div>
+
+        
+        
+
+        
+
+        <h1 id="porting-respeaker-2-mics-pi-hat-v2-to-beagley-ai"><strong>Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI</strong><a class="zola-anchor" href="#porting-respeaker-2-mics-pi-hat-v2-to-beagley-ai" aria-label="Anchor link for: porting-respeaker-2-mics-pi-hat-v2-to-beagley-ai" style="visibility: hidden;"></a>
+</h1>
+<p>REVISED MAY 2025</p>
+
+<blockquote class="callout warning has-title">
+  
+  
+  <p class="title">
+    <span class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12.865 3.00017L22.3912 19.5002C22.6674 19.9785 22.5035 20.5901 22.0252 20.8662C21.8732 20.954 21.7008 21.0002 21.5252 21.0002H2.47266C1.92037 21.0002 1.47266 20.5525 1.47266 20.0002C1.47266 19.8246 1.51886 19.6522 1.60663 19.5002L11.1329 3.00017C11.4091 2.52187 12.0206 2.358 12.4989 2.63414C12.651 2.72191 12.7772 2.84815 12.865 3.00017ZM4.20471 19.0002H19.7932L11.9989 5.50017L4.20471 19.0002ZM10.9989 16.0002H12.9989V18.0002H10.9989V16.0002ZM10.9989 9.00017H12.9989V14.0002H10.9989V9.00017Z" fill="currentColor"></path></svg>
+
+    </span>
+    <strong>Warning</strong>
+  </p>
+  <div class="content">
+    <p>This wiki is wrote for ReSpeaker 2-Mics Pi HAT v2, to distinguish the v1 and v2 device, please refer to <a rel="noopener nofollow noreferrer" target="_blank" href="https://wiki.seeedstudio.com/how-to-distinguish-respeaker_2-mics_pi_hat-hardware-revisions/">How to Distinguish ReSpeaker 2-Mics Pi HAT Hardware Revisions</a>.</p>
+
+  </div>
+  
+</blockquote>
+
+<h2 id="hardware-overview"><strong>Hardware Overview</strong><a class="zola-anchor" href="#hardware-overview" aria-label="Anchor link for: hardware-overview" style="visibility: hidden;"></a>
+</h2>
+<h3 id="1-beagley-ai">1. <strong>BeagleY-AI</strong><a class="zola-anchor" href="#1-beagley-ai" aria-label="Anchor link for: 1-beagley-ai" style="visibility: hidden;"></a>
+</h3>
+<p><img src="https://docs.beagleboard.org/_images/beagley-ai.webp" alt="BeagleY-AI" /></p>
+<p>BeagleY® AI is an open-source single board computer designed to simplify the process of building smart human machine interfaces (HMI), adding cameras and high-speed connectivity to a reliable embedded system. It features a powerful 64-bit, quad-core A53 processor, multiple powerful AI accelerators paired with C7x DSPs, integrated 50 GFLOP GPU supporting up to three concurrent display outputs and modern connectivity including USB3.1, PCIe Gen 3, WiFi6 and Bluetooth® Low Energy 5.4.</p>
+<p>The board is compatible with a wide range of existing accessories that expand the system functionality such as power over ethernet (PoE), NVMe storage and 5G connectivity.</p>
+<p>With its competitive price and user-friendly design, Beagle Y AI provides a positive development experience using BeagleBoard's tried and tested custom Debian Linux image.</p>
+<h3 id="2-respeaker-2-mics-pi-hat-v2">2. <strong>ReSpeaker 2-Mics Pi HAT v2</strong><a class="zola-anchor" href="#2-respeaker-2-mics-pi-hat-v2" aria-label="Anchor link for: 2-respeaker-2-mics-pi-hat-v2" style="visibility: hidden;"></a>
+</h3>
+
+<blockquote class="callout note has-title">
+  
+  
+  <p class="title">
+    <span class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z" fill="currentColor"></path></svg>
+
+    </span>
+    <strong>Note</strong>
+  </p>
+  <div class="content">
+    <p>The reSpeaker 2-Mics Pi HAT has been upgraded to version 2.0. The codec chip has been replaced from WM8960 to TLV320AIC3104, enabling support for Raspberry Pi 5 and expanding the sampling rate range from 8 kHz to 96 kHz.</p>
+
+  </div>
+  
+</blockquote>
+
+<p><img src="https://media-cdn.seeedstudio.com/media/catalog/product/cache/bb49d3ec4ee05b6f018e93f896b8a25d/0/4/04_8_1.png" alt="ReSpeaker" /></p>
+<p>ReSpeaker 2-Mics Pi HAT is a dual-microphone expansion board for Raspberry Pi designed for AI and voice applications. You can build a more powerful and flexible voice product that integrates Amazon Alexa Voice Service, Google Assistant, and so on.</p>
+<h2 id="setup-process"><strong>Setup Process</strong><a class="zola-anchor" href="#setup-process" aria-label="Anchor link for: setup-process" style="visibility: hidden;"></a>
+</h2>
+<h3 id="1-bootable-sd-card-preparation"><strong>1. Bootable SD Card Preparation</strong><a class="zola-anchor" href="#1-bootable-sd-card-preparation" aria-label="Anchor link for: 1-bootable-sd-card-preparation" style="visibility: hidden;"></a>
+</h3>
+<p>Create a bootable microSD card with latest/recommended OS image for BeagleY-AI. <a rel="noopener nofollow noreferrer" target="_blank" href="https://docs.beagleboard.org/boards/beagley/ai/02-quick-start.html">BeagleY-AI Quick Start</a></p>
+<h3 id="2-kernel-driver-compilation"><strong>2. Kernel Driver Compilation</strong><a class="zola-anchor" href="#2-kernel-driver-compilation" aria-label="Anchor link for: 2-kernel-driver-compilation" style="visibility: hidden;"></a>
+</h3>
+
+<blockquote class="callout note has-title">
+  
+  
+  <p class="title">
+    <span class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z" fill="currentColor"></path></svg>
+
+    </span>
+    <strong>Note</strong>
+  </p>
+  <div class="content">
+    <p>The BeagleY-AI typically comes with the tlv320aic31xx codec driver. If the snd-soc-tlv320aic31xx.ko.xz file is missing, try updating and upgrading your system using the command:
+sudo apt update &amp;&amp; sudo apt upgrade</p>
+<p>If the driver still does not exist after updating, follow the steps below to build it from source.
+If the file is present, you can skip this step and proceed directly to the “Load Device Tree” section.</p>
+
+  </div>
+  
+</blockquote>
+
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> cd linux</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> default configuration</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> make distclean</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bb.org_defconfig</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> config camera</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig</span>
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> -&gt; Device Drivers</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">   -&gt; Sound card support</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">     -&gt; Advance Linux Sound Architecture</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">       -&gt; ALSA for SoC audio support</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">         -&gt; CODEC drivers</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">             -&gt; Texas Instruments TLV320AIC31xx CODECs</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">                Set &quot;TLV320AIC31xx&quot; to module,</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">                Press &quot;m&quot;, save to original name (.config) and exit</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs modules LOCALVERSION=<span class="z-string z-quoted z-double z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&quot;</span>-ti-arm64-r23<span class="z-punctuation z-definition z-string z-end z-shell">&quot;</span></span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>j<span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">nproc</span></span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span></span></span>
+</span></code></pre>
+<p>Plug in the SD card which burned in” Create a bootable microSD card” to PC.</p>
+<p><strong>Install onto the SD card</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> sudo cp arch/arm64/boot/Image /media/<span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">users</span></span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span>/BOOT/</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> sudo cp arch/arm64/boot/dts/ti/<span class="z-keyword z-operator z-regexp z-quantifier z-shell">*</span>.dtbo /media/<span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">users</span></span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span>/BOOT/overlays/</span>
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> you can use &quot;make kernelversion&quot; to check kernel version</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> sudo cp<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>ra</span> modules/lib/modules/<span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">make</span></span><span class="z-meta z-function-call z-arguments z-shell"> kernelversion</span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span>-ti-arm64-r23/ /media/<span class="z-meta z-group z-expansion z-command z-parens z-shell"><span class="z-punctuation z-definition z-variable z-shell">$</span><span class="z-punctuation z-section z-parens z-begin z-shell">(</span><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">users</span></span><span class="z-punctuation z-section z-parens z-end z-shell">)</span></span>/rootfs/lib/modules/</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> sync</span>
+</span></code></pre>
+<p>Boot BeagleY-AI with SD card.</p>
+<h2 id="device-tree-configuration"><strong>Device Tree Configuration</strong><a class="zola-anchor" href="#device-tree-configuration" aria-label="Anchor link for: device-tree-configuration" style="visibility: hidden;"></a>
+</h2>
+<p><strong>Get compiled Device Tree Source (DTS)</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Download the compiled Device Tree Source (DTS) </span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> curl https://raw.githubusercontent.com/jaydon2020/ReSpeaker-2-Mics-Pi-HAT-v2-BeagleY-AI/refs/heads/main/overlays/k3-am67a-beagley-ai-respeaker.dtbo<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>o</span> k3-am67a-beagley-ai-respeaker.dtbo</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Move the .dtbo file to /boot/firmware/overlays/</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> mv k3-am67a-beagley-ai-respeaker.dtbo /boot/firmware/overlays/</span>
+</span></code></pre>
+<p><strong>Load Device Tree Configuration</strong>:</p>
+<p>Add the overlay to label microSD (default) and append fdtoverlays <code>/overlays/k3-am67a-beagley-ai-respeaker.dtbo</code> after the fdt line.
+To use the LEDs, you need enable SPI interface first. To enable SPI interface, open the BeagleY-AI <code>/boot/firmware/extlinux/extlinux.conf</code></p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> sudo nano /boot/firmware/extlinux/extlinux.conf</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span> label <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">microSD</span></span><span class="z-meta z-function-call z-arguments z-shell"> (default</span><span class="z-meta z-function-call z-shell"></span>)
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>    kernel <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">/Image</span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>    append <span class="z-variable z-other z-readwrite z-assignment z-shell">console</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">ttyS2,115200n8</span> <span class="z-variable z-other z-readwrite z-assignment z-shell">root</span><span class="z-keyword z-operator z-assignment z-shell">=</span><span class="z-string z-unquoted z-shell">/dev/mmcblk1p3</span> <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">ro</span></span><span class="z-meta z-function-call z-arguments z-shell"> rootfstype=ext4 resume=/dev/mmcblk1p2 rootwait net.ifnames=0 quiet</span>
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>    fdtdir <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">/</span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>    fdt <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">/ti/k3-am67a-beagley-ai.dtb</span></span>
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>    fdtoverlays <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">/overlays/k3-am67a-beagley-ai-respeaker.dtbo</span></span><span class="z-meta z-function-call z-arguments z-shell"> /overlays/k3-am67a-beagley-ai-spidev0.dtbo</span>
+</span><span class="z-source z-shell z-bash"><span class="z-keyword z-operator z-assignment z-redirection z-shell">&gt;</span>    initrd <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">/initrd.img</span></span>
+</span></code></pre>
+<p><strong>Restart</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> reboot<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>f</span></span>
+</span></code></pre>
+<h2 id="basic-recording-playback"><strong>Basic Recording &amp; Playback</strong><a class="zola-anchor" href="#basic-recording-playback" aria-label="Anchor link for: basic-recording-playback" style="visibility: hidden;"></a>
+</h2>
+<p>Use <code>aplay -l</code> to list the playback device and <code>arecord -l</code> to list the recording device.</p>
+<p><strong>Record mono audio (16-bit, 16kHz)</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">arecord</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span> plughw:0,0<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>format</span> S16_LE<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>rate</span> 16000<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>channels</span> 1<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>duration</span> 5 test_mono.wav</span>
+</span></code></pre>
+
+<blockquote class="callout note has-title">
+  
+  
+  <p class="title">
+    <span class="icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z" fill="currentColor"></path></svg>
+
+    </span>
+    <strong>Note</strong>
+  </p>
+  <div class="content">
+    <p>Why plughw?The ReSpeaker HAT's hardware <code>(hw:0,0)</code> natively supports stereo input only.plughw automatically converts the stereo stream to mono by averaging channels.</p>
+
+  </div>
+  
+</blockquote>
+
+<p><strong>Record stereo audio (16-bit, 48kHz)</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">arecord</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span> hw:0,0<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>format</span> S16_LE<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>rate</span> 48000<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>channels</span> 2<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> --</span>duration</span> 5 test_stereo.wav  </span>
+</span></code></pre>
+<p><strong>Playback recorded audio</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">aplay</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span> hw:0,0 test_mono.wav</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">aplay</span></span><span class="z-meta z-function-call z-arguments z-shell"><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span> hw:0,0 test_stereo.wav</span>
+</span></code></pre>
+<p><strong>Record Sound with Python</strong>:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> clone https://github.com/jaydon2020/ReSpeaker-2-Mics-Pi-HAT-v2-BeagleY-AI.git </span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> mic_hat</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> apt-get install portaudio19-dev libatlas-base-dev</span>
+</span></code></pre>
+<p>We use PyAudio python library to record sound with Python.First, run the following script to get the device index number of ReSpeaker</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">python3</span></span><span class="z-meta z-function-call z-arguments z-shell"> recordings/detect_microphone.py</span>
+</span></code></pre>
+<p>To record the sound, open <code>recording_examples/record_stero.py</code> file with nano, vim or other text editor and change <code>RESPEAKER_INDEX = 1</code> to index number of ReSpeaker on your system. Then run python script <code>record_stero.py</code> to make a recording:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">python3</span></span><span class="z-meta z-function-call z-arguments z-shell"> recordings/record_stereo.py</span>
+</span></code></pre>
+<h2 id="on-board-user-leds-and-button"><strong>On-board User LEDs and Button</strong><a class="zola-anchor" href="#on-board-user-leds-and-button" aria-label="Anchor link for: on-board-user-leds-and-button" style="visibility: hidden;"></a>
+</h2>
+<p>Setup</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> apt update</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> apt install python3-libgpiod python3-spidev</span>
+</span></code></pre>
+<p>Run <code>python interfaces/pixels.py</code> to test the LEDs.
+Run <code>python interfaces/button.py</code> to test the button.</p>
+<h2 id="full-porting-process-and-documentation"><strong>Full porting process and documentation</strong><a class="zola-anchor" href="#full-porting-process-and-documentation" aria-label="Anchor link for: full-porting-process-and-documentation" style="visibility: hidden;"></a>
+</h2>
+<p>Post on hackster <a rel="noopener nofollow noreferrer" target="_blank" href="https://www.hackster.io/jaydon-msia/porting-the-respeaker-2-mics-pi-hat-v2-to-beagley-ai-6dd8f2">Porting the ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI</a> with an application example keyword spotting</p>
+<h2 id="refrenecs"><strong>Refrenecs</strong><a class="zola-anchor" href="#refrenecs" aria-label="Anchor link for: refrenecs" style="visibility: hidden;"></a>
+</h2>
+<ol>
+<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://www.seeedstudio.com/ReSpeaker-2-Mics-Pi-HAT.html">https://www.seeedstudio.com/ReSpeaker-2-Mics-Pi-HAT.html</a></li>
+<li><a rel="noopener nofollow noreferrer" target="_blank" href="https://docs.beagleboard.org/boards/beagley/ai/index.html">https://docs.beagleboard.org/boards/beagley/ai/index.html</a></li>
+</ol>
+
+      </article>
+
+      
+      
+
+      
+      
+    </div>
+
+    
+
+
+<footer>
+  <div class="left">
+    <div class="copyright">
+      © 2025 Jian De
+      
+      <span>|</span>
+      Built with <a href="https://www.getzola.org" rel="noreferrer" target="_blank">zola</a> and <a href="https://github.com/isunjn/serene" rel="noreferrer" target="_blank">serene</a>
+      
+    </div>
+  </div>
+
+  <div class="right">
+    
+
+    
+    
+    
+    <button id="theme-toggle" aria-label="theme switch">
+      <span class="moon-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z" fill="currentColor"></path></svg>
+</span>
+      <span class="sun-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z" fill="currentColor"></path></svg>
+</span>
+    </button>
+    
+  </div>
+</footer>
+
+
+
+  </main>
+</div>
+
+  
+<script src="/js/lightense.min.js"></script>
+
+
+  <script src="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/js/main.js"></script>
+</body>
+
+</html>

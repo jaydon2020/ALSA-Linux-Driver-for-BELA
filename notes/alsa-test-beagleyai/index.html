@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  
+  
+    
+  
+  <meta name="description" content="Building on our Preempt-RT kernel for μs-level determinism">
+
+  <title>Measuring ALSA Latency on a BeagleY‑ai with Xenomai4‑EVL</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/img/apple-touch-icon.png">
+  
+  <style>
+
+  /* light mode colors */
+  body {
+    --primary-color: #5871a2;
+    --primary-pale-color: #5871a233;
+    --primary-decoration-color: #5871a210;
+    --bg-color: #ffffff;
+    --text-color: #2f3030;
+    --text-pale-color: #767676;
+    --text-decoration-color: #a9a9a9;
+    --highlight-mark-color: #5f75b020;
+
+    --callout-note-color: #5871a2;
+    --callout-tip-color: #268556;
+    --callout-important-color: #885fc9;
+    --callout-warning-color: #ab6632;
+    --callout-caution-color: #c64e4e;
+  }
+
+  /* dark mode colors */
+  body.dark {
+    --primary-color: #6f8fd1;
+    --primary-pale-color: #6f8fd166;
+    --primary-decoration-color: #6f8fd112;
+    --bg-color: #1c1c1c;
+    --text-color: #c1c1c1;
+    --text-pale-color: #848484;
+    --text-decoration-color: #5f5f5f;
+    --highlight-mark-color: #8296cb3b;
+
+    --callout-note-color: #6f8fd1;
+    --callout-tip-color: #47976f;
+    --callout-important-color: #9776cd;
+    --callout-warning-color: #ad7a52;
+    --callout-caution-color: #d06161;
+  }
+
+  /* typography */
+  body {
+    --main-font: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    --homepage-max-width: 768px;
+    --main-max-width: 768px;
+    --avatar-size: 60px;
+    --font-size: 16px;
+    --line-height: 1.75;
+    --img-border-radius: 0px;
+    --detail-border-radius: 0px;
+    --dark-mode-img-brightness: 0.75;
+    --dark-mode-chart-brightness: 0.75;
+    --inline-code-border-radius: 2px;
+    --inline-code-bg-color: var(--primary-decoration-color);
+    --block-code-border-radius: 0px;
+    --block-code-border-color: var(--primary-color);
+    --detail-border-color: var(--primary-color);
+  }
+
+</style>
+
+  <link rel="stylesheet" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/main.css">
+  
+
+<link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
+
+
+
+  
+</head>
+
+<body class="post">
+  
+  <script>
+    const theme = sessionStorage.getItem('theme');
+    const match = window.matchMedia("(prefers-color-scheme: dark)").matches
+    if ((theme && theme == 'dark') || (!theme && match)) {
+      document.body.classList.add('dark');
+      const hl = document.querySelector('link#hl');
+      if (hl) hl.href = 'https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/hl-dark.css';
+    }
+  </script>
+  
+  
+<div id="wrapper">
+  <div id="blank"></div>
+  <aside>
+    
+    
+    <nav>
+      <ul>
+        
+        <li>
+          <a class="h2" href="#introduction">Introduction</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#background">Background</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#environment-setup">Environment Setup</a>
+          
+        </li>
+        
+        <li>
+          <a class="h2" href="#running-the-latency-test">Running the Latency Test</a>
+          
+          <ul>
+            
+            <li>
+              <a class="h3" href="#initial-test-period-size-64-frames">Initial Test (Period Size = 64 Frames)</a>
+            </li>
+            
+          </ul>
+          
+        </li>
+        
+      </ul>
+    </nav>
+    
+    
+    <button id="back-to-top" aria-label="back to top">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+
+    </button>
+    
+  </aside>
+  <main>
+    
+<header>
+  <nav>
+    <a href="https:&#x2F;&#x2F;jaydon2020.github.io&#x2F;ALSA-Linux-Driver-for-BELA&#x2F;notes">← Back</a>
+  </nav>
+</header>
+
+
+    <div>
+      
+      
+      
+      
+      <div id="copy-cfg" style="display: none;" data-copy-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+" data-check-icon="&lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+"></div>
+      
+      <article class="prose">
+        <h1>Measuring ALSA Latency on a BeagleY‑ai with Xenomai4‑EVL</h1>
+        <div id="post-info">
+          <div id="date">
+            <span id="publish">May 29, 2025</span>
+            </div>
+
+          
+          <div id="tags">
+            <a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/beagley-ai"><span>#</span>BeagleY-AI</a><a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/alsa"><span>#</span>ALSA</a><a class="instant" href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA//tags/xenomai4"><span>#</span>Xenomai4</a>
+          </div>
+          
+        </div>
+
+        
+        
+
+        
+
+        <h2 id="introduction">Introduction<a class="zola-anchor" href="#introduction" aria-label="Anchor link for: introduction" style="visibility: hidden;"></a>
+</h2>
+<p>Low‑latency audio processing is critical for embedded systems that require real‑time performance, such as voice interfaces, digital signal processing (DSP), and interactive media applications. In this post, we demonstrate how to compile and test the Advanced Linux Sound Architecture (ALSA) library on a BeagleY‑ai running a Xenomai4‑EVL 6.6.69 kernel, and analyze the latency characteristics using the provided ALSA latency test.</p>
+<h2 id="background">Background<a class="zola-anchor" href="#background" aria-label="Anchor link for: background" style="visibility: hidden;"></a>
+</h2>
+<ul>
+<li><strong>Platform</strong>: BeagleY‑ai development board</li>
+<li><strong>Kernel</strong>: Xenomai4‑EVL 6.6.69 <a href="../xenomai4-beagleyai/">Integrating Xenomai 4 on BeagleY-AI: Hard Real-Time Linux</a></li>
+<li><strong>Sound Card</strong>: ReSpeaker 2-Mics Pi HAT v2 <a href="../respeaker-beagleyai/">Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI</a></li>
+<li><strong>ALSA version</strong>: Building from source at v1.2.14 (upgrading from the distribution package 1.2.8)</li>
+<li><strong>Realtime scheduler</strong>: Round Robin (RR) at high priority to minimize scheduling jitter</li>
+</ul>
+<p>Real‑time extensions like Xenomai’s EVL mode allow latency‑critical tasks to bypass much of the Linux scheduler’s unpredictability. ALSA’s test suite (<code>alsa-lib/test/latency</code>) can then measure round‑trip latency in frames and microseconds.</p>
+<h2 id="environment-setup">Environment Setup<a class="zola-anchor" href="#environment-setup" aria-label="Anchor link for: environment-setup" style="visibility: hidden;"></a>
+</h2>
+<ol>
+<li>
+<p><strong>Update and install prerequisites</strong></p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> apt update</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> apt install automake libtool git build-essential</span>
+</span></code></pre>
+</li>
+<li>
+<p><strong>Clone and checkout ALSA‑lib v1.2.14</strong></p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> clone https://github.com/alsa-project/alsa-lib.git</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> alsa-lib</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">git</span></span><span class="z-meta z-function-call z-arguments z-shell"> checkout v1.2.14<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>b</span> v1.2.14</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">./gitcompile</span></span>
+</span></code></pre>
+</li>
+<li>
+<p><strong>Build the latency test</strong></p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-support z-function z-cd z-shell">cd</span></span><span class="z-meta z-function-call z-arguments z-shell"> alsa-lib/test</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">make</span></span><span class="z-meta z-function-call z-arguments z-shell"> latency</span>
+</span></code></pre>
+</li>
+</ol>
+<p>Ensure that the EVL kernel module is loaded and that your audio device (<code>hw:0,0</code>) is available.</p>
+<h2 id="running-the-latency-test">Running the Latency Test<a class="zola-anchor" href="#running-the-latency-test" aria-label="Anchor link for: running-the-latency-test" style="visibility: hidden;"></a>
+</h2>
+<p>We invoke the test with the following parameters:</p>
+<ul>
+<li><strong>Playback and capture targets</strong>: <code>hw:0,0</code></li>
+<li><strong>Sample rate</strong>: 44.1 kHz</li>
+<li><strong>Buffer size</strong>: 64 frames</li>
+<li><strong>Period size</strong>: 64 frames (first run), then 32 frames (second run)</li>
+<li><strong>Mode</strong>: Polling, non-blocking</li>
+<li><strong>Scheduler</strong>: Round Robin at priority 99</li>
+</ul>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">sudo</span></span><span class="z-meta z-function-call z-arguments z-shell"> ./latency<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>P</span> hw:0,0<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>C</span> hw:0,0<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>r</span> 44100<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>m</span> 64<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>M</span> 64<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>p</span><span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>s</span> 1</span>
+</span></code></pre>
+<h3 id="initial-test-period-size-64-frames">Initial Test (Period Size = 64 Frames)<a class="zola-anchor" href="#initial-test-period-size-64-frames" aria-label="Anchor link for: initial-test-period-size-64-frames" style="visibility: hidden;"></a>
+</h3>
+<p>When called, the test/latency.c program will attemp to set period/buffer sizes based on the latency entered, starting from -m,--min option (or the default minimum latency = 64 if not specified). If the run succeeds without errors with that setting, the program exits; otherwise, the latency is increased, and the run repeated - if the run is succesful here, then program exits, else the process continues until the -M,--max latency is reached.</p>
+<p>Example of successful run on BeagleY-AI with seeed2micvoicec soundcard:</p>
+<pre class="z-code"><code><span class="z-text z-plain">Scheduler set to Round Robin with priority 99...
+</span><span class="z-text z-plain">Playback device is hw:0,0
+</span><span class="z-text z-plain">Capture device is hw:0,0
+</span><span class="z-text z-plain">Parameters are 44100Hz, S16_LE, 2 channels, non-blocking mode
+</span><span class="z-text z-plain">Poll mode: yes
+</span><span class="z-text z-plain">Loop limit is 44100 frames, minimum latency = 64, maximum latency = 64
+</span><span class="z-text z-plain">Hardware PCM card 0 &#39;seeed2micvoicec&#39; device 0 subdevice 0
+</span><span class="z-text z-plain">Its setup is:
+</span><span class="z-text z-plain">  stream       : PLAYBACK
+</span><span class="z-text z-plain">  access       : RW_INTERLEAVED
+</span><span class="z-text z-plain">  format       : S16_LE
+</span><span class="z-text z-plain">  subformat    : STD
+</span><span class="z-text z-plain">  channels     : 2
+</span><span class="z-text z-plain">  rate         : 44100
+</span><span class="z-text z-plain">  exact rate   : 44100 (44100/1)
+</span><span class="z-text z-plain">  msbits       : 16
+</span><span class="z-text z-plain">  buffer_size  : 64
+</span><span class="z-text z-plain">  period_size  : 32
+</span><span class="z-text z-plain">  period_time  : 725
+</span><span class="z-text z-plain">  tstamp_mode  : NONE
+</span><span class="z-text z-plain">  tstamp_type  : MONOTONIC
+</span><span class="z-text z-plain">  period_step  : 1
+</span><span class="z-text z-plain">  avail_min    : 32
+</span><span class="z-text z-plain">  period_event : 0
+</span><span class="z-text z-plain">  start_threshold  : 2147483647
+</span><span class="z-text z-plain">  stop_threshold   : 64
+</span><span class="z-text z-plain">  silence_threshold: 0
+</span><span class="z-text z-plain">  silence_size : 0
+</span><span class="z-text z-plain">  boundary     : 4611686018427387904
+</span><span class="z-text z-plain">  appl_ptr     : 0
+</span><span class="z-text z-plain">  hw_ptr       : 0
+</span><span class="z-text z-plain">Hardware PCM card 0 &#39;seeed2micvoicec&#39; device 0 subdevice 0
+</span><span class="z-text z-plain">Its setup is:
+</span><span class="z-text z-plain">  stream       : CAPTURE
+</span><span class="z-text z-plain">  access       : RW_INTERLEAVED
+</span><span class="z-text z-plain">  format       : S16_LE
+</span><span class="z-text z-plain">  subformat    : STD
+</span><span class="z-text z-plain">  channels     : 2
+</span><span class="z-text z-plain">  rate         : 44100
+</span><span class="z-text z-plain">  exact rate   : 44100 (44100/1)
+</span><span class="z-text z-plain">  msbits       : 16
+</span><span class="z-text z-plain">  buffer_size  : 64
+</span><span class="z-text z-plain">  period_size  : 32
+</span><span class="z-text z-plain">  period_time  : 725
+</span><span class="z-text z-plain">  tstamp_mode  : NONE
+</span><span class="z-text z-plain">  tstamp_type  : MONOTONIC
+</span><span class="z-text z-plain">  period_step  : 1
+</span><span class="z-text z-plain">  avail_min    : 32
+</span><span class="z-text z-plain">  period_event : 0
+</span><span class="z-text z-plain">  start_threshold  : 2147483647
+</span><span class="z-text z-plain">  stop_threshold   : 64
+</span><span class="z-text z-plain">  silence_threshold: 0
+</span><span class="z-text z-plain">  silence_size : 0
+</span><span class="z-text z-plain">  boundary     : 4611686018427387904
+</span><span class="z-text z-plain">  appl_ptr     : 0
+</span><span class="z-text z-plain">  hw_ptr       : 0
+</span><span class="z-text z-plain">Trying latency 64 frames, 1451.247us, 1.451247ms (689.0625Hz)
+</span><span class="z-text z-plain">Success
+</span><span class="z-text z-plain">Playback:
+</span><span class="z-text z-plain">*** frames = 44192 ***
+</span><span class="z-text z-plain">  state       : RUNNING
+</span><span class="z-text z-plain">  trigger_time: 8580.707455
+</span><span class="z-text z-plain">  tstamp      : 0.000000
+</span><span class="z-text z-plain">  delay       : 48
+</span><span class="z-text z-plain">  avail       : 16
+</span><span class="z-text z-plain">  avail_max   : 48
+</span><span class="z-text z-plain">Capture:
+</span><span class="z-text z-plain">*** frames = 44128 ***
+</span><span class="z-text z-plain">  state       : RUNNING
+</span><span class="z-text z-plain">  trigger_time: 8580.707458
+</span><span class="z-text z-plain">  tstamp      : 0.000000
+</span><span class="z-text z-plain">  delay       : 0
+</span><span class="z-text z-plain">  avail       : 0
+</span><span class="z-text z-plain">  avail_max   : 32
+</span><span class="z-text z-plain">Maximum read: 32 frames
+</span><span class="z-text z-plain">Maximum read latency: 725.624us, 0.725624ms (1378.1250Hz)
+</span><span class="z-text z-plain">Playback time = 8580.707455, Record time = 8580.707458, diff = -3
+</span></code></pre>
+<hr />
+
+      </article>
+
+      
+      
+
+      
+      
+    </div>
+
+    
+
+
+<footer>
+  <div class="left">
+    <div class="copyright">
+      © 2025 Jian De
+      
+      <span>|</span>
+      Built with <a href="https://www.getzola.org" rel="noreferrer" target="_blank">zola</a> and <a href="https://github.com/isunjn/serene" rel="noreferrer" target="_blank">serene</a>
+      
+    </div>
+  </div>
+
+  <div class="right">
+    
+
+    
+    
+    
+    <button id="theme-toggle" aria-label="theme switch">
+      <span class="moon-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M10 7C10 10.866 13.134 14 17 14C18.9584 14 20.729 13.1957 21.9995 11.8995C22 11.933 22 11.9665 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C12.0335 2 12.067 2 12.1005 2.00049C10.8043 3.27098 10 5.04157 10 7ZM4 12C4 16.4183 7.58172 20 12 20C15.0583 20 17.7158 18.2839 19.062 15.7621C18.3945 15.9187 17.7035 16 17 16C12.0294 16 8 11.9706 8 7C8 6.29648 8.08133 5.60547 8.2379 4.938C5.71611 6.28423 4 8.9417 4 12Z" fill="currentColor"></path></svg>
+</span>
+      <span class="sun-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path d="M12 18C8.68629 18 6 15.3137 6 12C6 8.68629 8.68629 6 12 6C15.3137 6 18 8.68629 18 12C18 15.3137 15.3137 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16ZM11 1H13V4H11V1ZM11 20H13V23H11V20ZM3.51472 4.92893L4.92893 3.51472L7.05025 5.63604L5.63604 7.05025L3.51472 4.92893ZM16.9497 18.364L18.364 16.9497L20.4853 19.0711L19.0711 20.4853L16.9497 18.364ZM19.0711 3.51472L20.4853 4.92893L18.364 7.05025L16.9497 5.63604L19.0711 3.51472ZM5.63604 16.9497L7.05025 18.364L4.92893 20.4853L3.51472 19.0711L5.63604 16.9497ZM23 11V13H20V11H23ZM4 11V13H1V11H4Z" fill="currentColor"></path></svg>
+</span>
+    </button>
+    
+  </div>
+</footer>
+
+
+
+  </main>
+</div>
+
+  
+<script src="/js/lightense.min.js"></script>
+
+
+  <script src="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>My Notes</title>
+	<subtitle>Collection of technical notes.</subtitle>
+	<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/feed.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/"/>
+	<updated>2025-06-11T00:00:00+00:00</updated>
+	<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/feed.xml</id>
+	<entry xml:lang="en">
+		<title>Kernel Configuration and Build System</title>
+		<published>2025-06-11T00:00:00+00:00</published>
+		<updated>2025-06-11T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/kernel-config-build-system/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/kernel-config-build-system/</id>
+		<content type="html">
+&lt;blockquote class=&quot;callout warning has-title&quot;&gt;
+  
+  
+  &lt;p class=&quot;title&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+      &lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M12.865 3.00017L22.3912 19.5002C22.6674 19.9785 22.5035 20.5901 22.0252 20.8662C21.8732 20.954 21.7008 21.0002 21.5252 21.0002H2.47266C1.92037 21.0002 1.47266 20.5525 1.47266 20.0002C1.47266 19.8246 1.51886 19.6522 1.60663 19.5002L11.1329 3.00017C11.4091 2.52187 12.0206 2.358 12.4989 2.63414C12.651 2.72191 12.7772 2.84815 12.865 3.00017ZM4.20471 19.0002H19.7932L11.9989 5.50017L4.20471 19.0002ZM10.9989 16.0002H12.9989V18.0002H10.9989V16.0002ZM10.9989 9.00017H12.9989V14.0002H10.9989V9.00017Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+
+    &lt;&#x2F;span&gt;
+    &lt;strong&gt;Warning&lt;&#x2F;strong&gt;
+  &lt;&#x2F;p&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;This is still a draft&lt;&#x2F;p&gt;
+
+  &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;blockquote&gt;
+
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Introductory Video - ALSA driver for Bela</title>
+		<published>2025-06-09T00:00:00+00:00</published>
+		<updated>2025-06-09T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/intro-video/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/intro-video/</id>
+		<content type="html">&lt;h2 id=&quot;youtube-video&quot;&gt;Youtube Video&lt;a class=&quot;zola-anchor&quot; href=&quot;#youtube-video&quot; aria-label=&quot;Anchor link for: youtube-video&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;style&gt;
+.responsive-video {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; &#x2F;* 16:9 aspect ratio *&#x2F;
+    height: 0;
+    overflow: hidden;
+    border-radius: 1rem; &#x2F;* Optional: add rounding to the container too *&#x2F;
+}
+
+.responsive-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 1rem; &#x2F;* Curved edges for the video *&#x2F;
+}
+&lt;&#x2F;style&gt;
+
+&lt;div class=&quot;responsive-video &quot;&gt;
+    &lt;iframe
+        src=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;embed&#x2F;maFea6I4BS4&quot;
+        webkitallowfullscreen
+        mozallowfullscreen
+        allowfullscreen&gt;
+    &lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;
+&lt;h2 id=&quot;canva-slides&quot;&gt;Canva Slides&lt;a class=&quot;zola-anchor&quot; href=&quot;#canva-slides&quot; aria-label=&quot;Anchor link for: canva-slides&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;div style=&quot;position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 1rem; will-change: transform;&quot;&gt;
+  &lt;iframe loading=&quot;lazy&quot; style=&quot;position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;&quot;
+    src=&quot;https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGpeIMeCi0&#x2F;2LV7_53_NWI7FBEVpNkkdQ&#x2F;view?embed&quot; allowfullscreen=&quot;allowfullscreen&quot; allow=&quot;fullscreen&quot;&gt;
+  &lt;&#x2F;iframe&gt;
+&lt;&#x2F;div&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;www.canva.com&amp;#x2F;design&amp;#x2F;DAGpeIMeCi0&amp;#x2F;2LV7_53_NWI7FBEVpNkkdQ&amp;#x2F;view?utm_content=DAGpeIMeCi0&amp;amp;utm_campaign=designshare&amp;amp;utm_medium=embeds&amp;amp;utm_source=link&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Introductory - ALSA Drivers for Bela&lt;&#x2F;a&gt; by Jian De. Build with 
+&lt;a href=&quot;www.canva.com&quot;&gt;canva.com&lt;&#x2F;a&gt;</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Measuring ALSA Latency on a BeagleY‑ai with Xenomai4‑EVL</title>
+		<published>2025-05-29T00:00:00+00:00</published>
+		<updated>2025-05-29T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/alsa-test-beagleyai/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/alsa-test-beagleyai/</id>
+		<content type="html">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;a class=&quot;zola-anchor&quot; href=&quot;#introduction&quot; aria-label=&quot;Anchor link for: introduction&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Low‑latency audio processing is critical for embedded systems that require real‑time performance, such as voice interfaces, digital signal processing (DSP), and interactive media applications. In this post, we demonstrate how to compile and test the Advanced Linux Sound Architecture (ALSA) library on a BeagleY‑ai running a Xenomai4‑EVL 6.6.69 kernel, and analyze the latency characteristics using the provided ALSA latency test.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;a class=&quot;zola-anchor&quot; href=&quot;#background&quot; aria-label=&quot;Anchor link for: background&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Platform&lt;&#x2F;strong&gt;: BeagleY‑ai development board&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Kernel&lt;&#x2F;strong&gt;: Xenomai4‑EVL 6.6.69 &lt;a href=&quot;..&#x2F;xenomai4-beagleyai&#x2F;&quot;&gt;Integrating Xenomai 4 on BeagleY-AI: Hard Real-Time Linux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Sound Card&lt;&#x2F;strong&gt;: ReSpeaker 2-Mics Pi HAT v2 &lt;a href=&quot;..&#x2F;respeaker-beagleyai&#x2F;&quot;&gt;Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;ALSA version&lt;&#x2F;strong&gt;: Building from source at v1.2.14 (upgrading from the distribution package 1.2.8)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Realtime scheduler&lt;&#x2F;strong&gt;: Round Robin (RR) at high priority to minimize scheduling jitter&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Real‑time extensions like Xenomai’s EVL mode allow latency‑critical tasks to bypass much of the Linux scheduler’s unpredictability. ALSA’s test suite (&lt;code&gt;alsa-lib&#x2F;test&#x2F;latency&lt;&#x2F;code&gt;) can then measure round‑trip latency in frames and microseconds.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;environment-setup&quot;&gt;Environment Setup&lt;a class=&quot;zola-anchor&quot; href=&quot;#environment-setup&quot; aria-label=&quot;Anchor link for: environment-setup&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Update and install prerequisites&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; apt update&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; apt install automake libtool git build-essential&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Clone and checkout ALSA‑lib v1.2.14&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone https:&#x2F;&#x2F;github.com&#x2F;alsa-project&#x2F;alsa-lib.git&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; alsa-lib&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; checkout v1.2.14&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;b&lt;&#x2F;span&gt; v1.2.14&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;.&#x2F;gitcompile&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Build the latency test&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; alsa-lib&#x2F;test&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; latency&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Ensure that the EVL kernel module is loaded and that your audio device (&lt;code&gt;hw:0,0&lt;&#x2F;code&gt;) is available.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;running-the-latency-test&quot;&gt;Running the Latency Test&lt;a class=&quot;zola-anchor&quot; href=&quot;#running-the-latency-test&quot; aria-label=&quot;Anchor link for: running-the-latency-test&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;We invoke the test with the following parameters:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Playback and capture targets&lt;&#x2F;strong&gt;: &lt;code&gt;hw:0,0&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Sample rate&lt;&#x2F;strong&gt;: 44.1 kHz&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Buffer size&lt;&#x2F;strong&gt;: 64 frames&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Period size&lt;&#x2F;strong&gt;: 64 frames (first run), then 32 frames (second run)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Mode&lt;&#x2F;strong&gt;: Polling, non-blocking&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Scheduler&lt;&#x2F;strong&gt;: Round Robin at priority 99&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; .&#x2F;latency&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;P&lt;&#x2F;span&gt; hw:0,0&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;C&lt;&#x2F;span&gt; hw:0,0&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;r&lt;&#x2F;span&gt; 44100&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;m&lt;&#x2F;span&gt; 64&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;M&lt;&#x2F;span&gt; 64&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;p&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;s&lt;&#x2F;span&gt; 1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;initial-test-period-size-64-frames&quot;&gt;Initial Test (Period Size = 64 Frames)&lt;a class=&quot;zola-anchor&quot; href=&quot;#initial-test-period-size-64-frames&quot; aria-label=&quot;Anchor link for: initial-test-period-size-64-frames&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;When called, the test&#x2F;latency.c program will attemp to set period&#x2F;buffer sizes based on the latency entered, starting from -m,--min option (or the default minimum latency = 64 if not specified). If the run succeeds without errors with that setting, the program exits; otherwise, the latency is increased, and the run repeated - if the run is succesful here, then program exits, else the process continues until the -M,--max latency is reached.&lt;&#x2F;p&gt;
+&lt;p&gt;Example of successful run on BeagleY-AI with seeed2micvoicec soundcard:&lt;&#x2F;p&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Scheduler set to Round Robin with priority 99...
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Playback device is hw:0,0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Capture device is hw:0,0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Parameters are 44100Hz, S16_LE, 2 channels, non-blocking mode
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Poll mode: yes
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Loop limit is 44100 frames, minimum latency = 64, maximum latency = 64
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Hardware PCM card 0 &amp;#39;seeed2micvoicec&amp;#39; device 0 subdevice 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Its setup is:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  stream       : PLAYBACK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  access       : RW_INTERLEAVED
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  format       : S16_LE
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  subformat    : STD
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  channels     : 2
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  rate         : 44100
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  exact rate   : 44100 (44100&#x2F;1)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  msbits       : 16
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  buffer_size  : 64
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_size  : 32
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_time  : 725
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  tstamp_mode  : NONE
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  tstamp_type  : MONOTONIC
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_step  : 1
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  avail_min    : 32
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_event : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  start_threshold  : 2147483647
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  stop_threshold   : 64
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  silence_threshold: 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  silence_size : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  boundary     : 4611686018427387904
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  appl_ptr     : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  hw_ptr       : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Hardware PCM card 0 &amp;#39;seeed2micvoicec&amp;#39; device 0 subdevice 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Its setup is:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  stream       : CAPTURE
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  access       : RW_INTERLEAVED
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  format       : S16_LE
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  subformat    : STD
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  channels     : 2
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  rate         : 44100
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  exact rate   : 44100 (44100&#x2F;1)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  msbits       : 16
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  buffer_size  : 64
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_size  : 32
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_time  : 725
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  tstamp_mode  : NONE
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  tstamp_type  : MONOTONIC
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_step  : 1
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  avail_min    : 32
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  period_event : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  start_threshold  : 2147483647
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  stop_threshold   : 64
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  silence_threshold: 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  silence_size : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  boundary     : 4611686018427387904
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  appl_ptr     : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  hw_ptr       : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Trying latency 64 frames, 1451.247us, 1.451247ms (689.0625Hz)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Success
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Playback:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;*** frames = 44192 ***
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  state       : RUNNING
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  trigger_time: 8580.707455
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  tstamp      : 0.000000
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  delay       : 48
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  avail       : 16
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  avail_max   : 48
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Capture:
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;*** frames = 44128 ***
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  state       : RUNNING
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  trigger_time: 8580.707458
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  tstamp      : 0.000000
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  delay       : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  avail       : 0
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;  avail_max   : 32
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Maximum read: 32 frames
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Maximum read latency: 725.624us, 0.725624ms (1378.1250Hz)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;Playback time = 8580.707455, Record time = 8580.707458, diff = -3
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Integrating Xenomai 4 on BeagleY-AI: Hard Real-Time Linux</title>
+		<published>2025-05-28T00:00:00+00:00</published>
+		<updated>2025-05-28T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/xenomai4-beagleyai/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/xenomai4-beagleyai/</id>
+		<content type="html">&lt;h3 id=&quot;why-xenomai&quot;&gt;&lt;strong&gt;Why Xenomai?&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-xenomai&quot; aria-label=&quot;Anchor link for: why-xenomai&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;While Preempt-RT provides soft real-time capabilities, &lt;strong&gt;Xenomai 4&lt;&#x2F;strong&gt; delivers &lt;strong&gt;hard real-time performance&lt;&#x2F;strong&gt; via its EVL (Evolvable Linux) core. This dual-kernel approach achieves:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Sub-10μs latency&lt;&#x2F;strong&gt; for time-critical tasks&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Deterministic interrupt handling&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Coexistence&lt;&#x2F;strong&gt; of real-time and Linux applications&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;&lt;strong&gt;Prerequisites&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;BeagleY-AI&lt;&#x2F;strong&gt; running &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.beagleboard.org&#x2F;distros&#x2F;beagley-ai-debian-12-11-2025-05-21-xfce-v6-6-x-ti&quot;&gt;Debian 12.11 2025-05-21 XFCE&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Host Machine&lt;&#x2F;strong&gt;: Ubuntu 22.04+ (64-bit) with ARM cross-compiler&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;step-1-obtain-kernel-sources&quot;&gt;&lt;strong&gt;Step 1: Obtain Kernel Sources&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-1-obtain-kernel-sources&quot; aria-label=&quot;Anchor link for: step-1-obtain-kernel-sources&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;em&gt;(Host Machine)&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;1-1-clone-beagleboard-s-linux-kernel&quot;&gt;&lt;strong&gt;1.1 Clone Beagleboard’s Linux Kernel&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#1-1-clone-beagleboard-s-linux-kernel&quot; aria-label=&quot;Anchor link for: 1-1-clone-beagleboard-s-linux-kernel&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone https:&#x2F;&#x2F;github.com&#x2F;beagleboard&#x2F;linux&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;b&lt;&#x2F;span&gt; 6.6.58-ti-rt-arm64-r27&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; linux&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;1-2-fetch-xenomai-evl-patches&quot;&gt;&lt;strong&gt;1.2 Fetch Xenomai EVL Patches&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#1-2-fetch-xenomai-evl-patches&quot; aria-label=&quot;Anchor link for: 1-2-fetch-xenomai-evl-patches&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; remote add xenomai https:&#x2F;&#x2F;source.denx.de&#x2F;Xenomai&#x2F;xenomai4&#x2F;linux-evl.git&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; fetch xenomai v6.6.y-evl-rebase&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;step-2-merge-evl-into-ti-kernel&quot;&gt;&lt;strong&gt;Step 2: Merge EVL into TI Kernel&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-2-merge-evl-into-ti-kernel&quot; aria-label=&quot;Anchor link for: step-2-merge-evl-into-ti-kernel&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;2-1-create-a-merge-branch&quot;&gt;&lt;strong&gt;2.1 Create a Merge Branch&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-1-create-a-merge-branch&quot; aria-label=&quot;Anchor link for: 2-1-create-a-merge-branch&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; checkout&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;b&lt;&#x2F;span&gt; ti-xenomai-merge&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; merge xenomai&#x2F;v6.6.y-evl-rebase&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;2-2-resolve-merge-conflicts&quot;&gt;&lt;strong&gt;2.2 Resolve Merge Conflicts&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-2-resolve-merge-conflicts&quot; aria-label=&quot;Anchor link for: 2-2-resolve-merge-conflicts&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Focus on:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;arch&#x2F;arm64&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt; (TI-specific changes vs. Xenomai’s EVL modifications)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;drivers&#x2F;&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt; (e.g., SPI, PWM, or Ethernet drivers)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;kernel&#x2F;sched&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt; (scheduler conflicts between RT and EVL)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;step-3-configure-the-kernel&quot;&gt;&lt;strong&gt;Step 3: Configure the Kernel&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-3-configure-the-kernel&quot; aria-label=&quot;Anchor link for: step-3-configure-the-kernel&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;3-1-start-with-beagley-s-default-config&quot;&gt;&lt;strong&gt;3.1 Start with BeagleY’s Default Config&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#3-1-start-with-beagley-s-default-config&quot; aria-label=&quot;Anchor link for: 3-1-start-with-beagley-s-default-config&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; distclean&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bb.org_defconfig&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;3-2-enable-xenomai-evl&quot;&gt;&lt;strong&gt;3.2 Enable Xenomai EVL&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#3-2-enable-xenomai-evl&quot; aria-label=&quot;Anchor link for: 3-2-enable-xenomai-evl&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Key Options&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;-&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;Kernel Features                                                                                              &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;    &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;-&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-control z-regexp z-set z-begin z-shell&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-regexp z-quantifier z-shell&quot;&gt;*&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-control z-regexp z-set z-end z-shell&quot;&gt;]&lt;&#x2F;span&gt;EVL real-time core&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;[*]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;   Enable quota-based scheduling &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;[*]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;   Enable temporal partitioning policy&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-punctuation z-definition z-compound z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;4&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-definition z-compound z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;     Number of partitions&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-support z-function z-test z-begin z-shell&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &lt;span class=&quot;z-support z-function z-test z-end z-shell&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;   &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;Optimize&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; for intra-core concurrency &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;[*]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;   Collect runtime statistics&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-support z-function z-test z-begin z-shell&quot;&gt;[&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &lt;span class=&quot;z-support z-function z-test z-end z-shell&quot;&gt;]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;   &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;Out-of-band&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; networking (EXPERIMENTAL&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;Fixed&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; sizes and limits  ---&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;Pre-calibrated&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; latency  ---&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;        &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;[*]&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;   Debug support  ---&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;          
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;step-4-build-the-kernel&quot;&gt;&lt;strong&gt;Step 4: Build the Kernel&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-4-build-the-kernel&quot; aria-label=&quot;Anchor link for: step-4-build-the-kernel&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;4-1-compile-kernel-modules&quot;&gt;&lt;strong&gt;4.1 Compile Kernel &amp;amp; Modules&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#4-1-compile-kernel-modules&quot; aria-label=&quot;Anchor link for: 4-1-compile-kernel-modules&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- &lt;span class=&quot;z-punctuation z-separator z-continuation z-line z-shell&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;    LOCALVERSION=&lt;span class=&quot;z-string z-quoted z-double z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;-xenomai&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;j&lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;nproc&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- &lt;span class=&quot;z-punctuation z-separator z-continuation z-line z-shell&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;     INSTALL_MOD_PATH=.&#x2F;modules modules_install&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;4-2-package-artifacts&quot;&gt;&lt;strong&gt;4.2 Package Artifacts&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#4-2-package-artifacts&quot; aria-label=&quot;Anchor link for: 4-2-package-artifacts&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;tar&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;czf&lt;&#x2F;span&gt; xenomai-kernel-6.6.69-xenomai.tar.gz &lt;span class=&quot;z-punctuation z-separator z-continuation z-line z-shell&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;    arch&#x2F;arm64&#x2F;boot&#x2F;Image modules&#x2F;lib&#x2F;modules&#x2F;6.6.69-xenomai&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;step-5-deploy-evl-kernel&quot;&gt;&lt;strong&gt;Step 5: Deploy EVL Kernel&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-5-deploy-evl-kernel&quot; aria-label=&quot;Anchor link for: step-5-deploy-evl-kernel&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;5-1-install-on-target&quot;&gt;&lt;strong&gt;5.1 Install on Target&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#5-1-install-on-target&quot; aria-label=&quot;Anchor link for: 5-1-install-on-target&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;em&gt;(Target Device BeagleY-AI)&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Copy &lt;code&gt;arch&#x2F;arm64&#x2F;boot&#x2F;Image&lt;&#x2F;code&gt; to &lt;code&gt;&#x2F;BOOT&#x2F;&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Extract modules to &lt;code&gt;&#x2F;lib&#x2F;modules&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Update &lt;code&gt;&#x2F;boot&#x2F;firmware&#x2F;extlinux&#x2F;extlinux.conf&lt;&#x2F;code&gt;:&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;ini&quot; class=&quot;language-ini z-code&quot;&gt;&lt;code class=&quot;language-ini&quot; data-lang=&quot;ini&quot;&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;label&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;microSD (default)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;    &lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;kernel&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;Image
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;    &lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;append&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;console&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;=&lt;&#x2F;span&gt;ttyS2&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;,&lt;&#x2F;span&gt;115200n8 root&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;dev&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;mmcblk1p3 ro rootfstype&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;=&lt;&#x2F;span&gt;ext4 resume&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;dev&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;mmcblk1p2 rootwait net&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;.&lt;&#x2F;span&gt;ifnames&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-genconfig&quot;&gt;0&lt;&#x2F;span&gt; quiet
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;    &lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;fdtdir&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;    &lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;fdt&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;ti&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;k3&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;am67a&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;beagley&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;ai&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;.&lt;&#x2F;span&gt;dtb
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;    &lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;fdtoverlays&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;overlays&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;k3&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;am67a&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;beagley&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;ai&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;csi0&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;tevs&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;rpi22&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;.&lt;&#x2F;span&gt;dtbo
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;    &lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;initrd&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;&#x2F;&lt;&#x2F;span&gt;initrd&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;.&lt;&#x2F;span&gt;img
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Validate the kernel version with &lt;code&gt;uname -r&lt;&#x2F;code&gt; and will get:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; uname&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;r&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;6.6.69-xenomai&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;step-6-build-install-xenomai-libraries&quot;&gt;&lt;strong&gt;Step 6: Build &amp;amp; Install Xenomai Libraries&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-6-build-install-xenomai-libraries&quot; aria-label=&quot;Anchor link for: step-6-build-install-xenomai-libraries&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;em&gt;(Native on BeagleY-AI)&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;6-1-clone-source&quot;&gt;&lt;strong&gt;6.1 Clone Source&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#6-1-clone-source&quot; aria-label=&quot;Anchor link for: 6-1-clone-source&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &lt;span class=&quot;z-meta z-group z-expansion z-tilde&quot;&gt;&lt;span class=&quot;z-variable z-language z-tilde z-shell&quot;&gt;~&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;xenomai&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-and z-shell&quot;&gt;&amp;amp;&amp;amp;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &lt;span class=&quot;z-meta z-group z-expansion z-tilde&quot;&gt;&lt;span class=&quot;z-variable z-language z-tilde z-shell&quot;&gt;~&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;xenomai  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone https:&#x2F;&#x2F;source.denx.de&#x2F;Xenomai&#x2F;xenomai4&#x2F;libevl.git  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone https:&#x2F;&#x2F;source.denx.de&#x2F;Xenomai&#x2F;xenomai4&#x2F;linux-evl.git &lt;span class=&quot;z-punctuation z-separator z-continuation z-line z-shell&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt;  --&lt;&#x2F;span&gt;depth&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;1&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;branch&lt;&#x2F;span&gt; v6.6.y-evl-rebase  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;6-2-build-libevl&quot;&gt;&lt;strong&gt;6.2 Build libevl&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#6-2-build-libevl&quot; aria-label=&quot;Anchor link for: 6-2-build-libevl&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; build&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-logical z-and z-shell&quot;&gt;&amp;amp;&amp;amp;&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; build  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;meson&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; setup&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;Dbuildtype&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;release&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;Dprefix&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;&#x2F;usr &lt;span class=&quot;z-punctuation z-separator z-continuation z-line z-shell&quot;&gt;\
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt;            -&lt;&#x2F;span&gt;Duapi&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-option z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-group z-expansion z-tilde&quot;&gt;&lt;span class=&quot;z-variable z-language z-tilde z-shell&quot;&gt;~&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;xenomai&#x2F;linux-evl ..&#x2F;libevl  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;meson&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; compile  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; ninja install  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;6-3-validate-with-evl-test&quot;&gt;&lt;strong&gt;6.3 Validate with EVL test&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#6-3-validate-with-evl-test&quot; aria-label=&quot;Anchor link for: 6-3-validate-with-evl-test&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; evl test&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Expected Output&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;plaintext&quot; class=&quot;language-plaintext z-code&quot;&gt;&lt;code class=&quot;language-plaintext&quot; data-lang=&quot;plaintext&quot;&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;$ sudo evl test
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;basic-xbuf: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;clock-timer-periodic: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;clone-fork-exec: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;detach-self: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;duplicate-element: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;element-visibility: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;fault: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;fpu-preload: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;fpu-stress: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;heap-torture: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;mapfd: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-deadlock: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-deboost-stress: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-event: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-event-targeted: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-event-untrack: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-flags: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-flags-broadcast: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-flags-inband: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pi: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pi-deadlock: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pi-deboost: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pi-stress: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-dynamic: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-lazy: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-lower: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-nested: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-pi: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-raise: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-tryenter: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-pp-weak: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-recursive: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-steal: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-trylock: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-wait-multiple: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;monitor-wait-requeue: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;observable-hm: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;observable-inband: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;observable-onchange: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;observable-oob: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;observable-race: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;observable-thread: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;observable-unicast: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-close: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-flags: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-many: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-multiple: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-nested: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-observable-inband: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-observable-oob: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-sem: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;poll-xbuf: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;proxy-echo: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;proxy-eventfd: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;proxy-pipe: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;proxy-poll: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;ring-spray: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;rwlock-read: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;rwlock-write: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;sched-quota-accuracy: 99.0%
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;sched-tp-accuracy: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;sched-tp-overrun: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;sem-close-unblock: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;sem-flush: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;sem-timedwait: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;sem-wait: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;simple-clone: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;stax-lock: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;stax-warn: OK
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;thread-mode-bits: OK
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;jaydon2020.github.io&#x2F;ALSA-Linux-Driver-for-BELA&#x2F;notes&#x2F;xenomai4-beagleyai&#x2F;image.png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;conclusion&quot;&gt;&lt;strong&gt;Conclusion&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Coming soon&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;&lt;strong&gt;Next Steps&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Coming soon&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;references&quot;&gt;&lt;strong&gt;References&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#references&quot; aria-label=&quot;Anchor link for: references&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;xenomai.org&#x2F;documentation&#x2F;&quot;&gt;Xenomai Official Documentation&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;source.denx.de&#x2F;Xenomai&#x2F;xenomai4&#x2F;linux-evl&quot;&gt;EVL Kernel Patches&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.osadl.org&#x2F;Realtime-Linux.projects-realtime-linux.0.html&quot;&gt;Real-Time Systems Design Guide&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Building and Installing a Real-Time Kernel on BeagleBone Black</title>
+		<published>2025-05-25T00:00:00+00:00</published>
+		<updated>2025-05-25T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/bbb-rt-cross-compile/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/bbb-rt-cross-compile/</id>
+		<content type="html">&lt;h4 id=&quot;introduction&quot;&gt;&lt;strong&gt;Introduction&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#introduction&quot; aria-label=&quot;Anchor link for: introduction&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;www.beagleboard.org&#x2F;app&#x2F;uploads&#x2F;2023&#x2F;07&#x2F;DSC00505-400x345.webp&quot; alt=&quot;BeagleBone® Black&quot; &#x2F;&gt;&lt;br &#x2F;&gt;
+The BeagleBone Black (BBB) is a versatile embedded platform, but its stock Linux kernel isn’t optimized for &lt;strong&gt;hard real-time tasks&lt;&#x2F;strong&gt; (e.g., robotics, industrial control). By compiling and installing a &lt;strong&gt;Preempt-RT&lt;&#x2F;strong&gt; (Real-Time) patched kernel, you can achieve microsecond-level latency guarantees. This guide walks through cross-compiling and deploying the &lt;code&gt;6.6.87-bone-rt-r27&lt;&#x2F;code&gt; kernel on Debian 12.10.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;why-a-real-time-kernel&quot;&gt;&lt;strong&gt;Why a Real-Time Kernel?&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#why-a-real-time-kernel&quot; aria-label=&quot;Anchor link for: why-a-real-time-kernel&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Preempt-RT Patch&lt;&#x2F;strong&gt;: Converts Linux into a hard real-time OS by minimizing non-interruptible code paths.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Use Cases&lt;&#x2F;strong&gt;: Motor control, sensor fusion, high-speed data acquisition.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Latency&lt;&#x2F;strong&gt;: Reduces worst-case latency from milliseconds to &lt;strong&gt;~50μs&lt;&#x2F;strong&gt; on the BBB.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;prerequisites&quot;&gt;&lt;strong&gt;Prerequisites&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Hardware&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;BeagleBone Black (Rev C recommended).&lt;&#x2F;li&gt;
+&lt;li&gt;MicroSD card (8GB+).&lt;&#x2F;li&gt;
+&lt;li&gt;USB cable (for power&#x2F;data).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Software&lt;&#x2F;strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Base Image&lt;&#x2F;strong&gt;: &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.beagleboard.org&#x2F;distros&#x2F;beaglebone-black-debian-12-10-2025-05-14-iot-vscode-v6-12-x&quot;&gt;Debian 12.10 (2025-05-14)&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Host Machine&lt;&#x2F;strong&gt;: Ubuntu 22.04 (or any Linux distro with ARM cross-compiler).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;step-1-prepare-the-bbb&quot;&gt;&lt;strong&gt;Step 1: Prepare the BBB&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-1-prepare-the-bbb&quot; aria-label=&quot;Anchor link for: step-1-prepare-the-bbb&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Flash the Debian image to the SD card:
+&lt;ul&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;beagleboard&#x2F;bb-imager-rs&quot;&gt;bb-imager-rs&lt;&#x2F;a&gt; (recomended)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;etcher.balena.io&#x2F;&quot;&gt;balena Etcher&lt;&#x2F;a&gt; (alternative)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Boot the BBB from the SD card.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;step-2-cross-compile-the-kernel&quot;&gt;&lt;strong&gt;Step 2: Cross-Compile the Kernel&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-2-cross-compile-the-kernel&quot; aria-label=&quot;Anchor link for: step-2-cross-compile-the-kernel&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;On your host machine&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Clone Robert Nelson’s build scripts (official BBB kernel maintainer):&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone https:&#x2F;&#x2F;github.com&#x2F;RobertCNelson&#x2F;bb-kernel.git kernelbuildscripts  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; kernelbuildscripts  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Checkout the real-time kernel branch:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; checkout 6.6.87-bone-rt-r27&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;b&lt;&#x2F;span&gt; rt-kernel  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Start the build (takes 20-60 minutes):&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;.&#x2F;build_kernel.sh&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Generated Artifacts (in &lt;code&gt;.&#x2F;deploy&#x2F;&lt;&#x2F;code&gt;):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;6.6.87-bone-rt-r27.zImage&lt;&#x2F;code&gt; (compressed kernel).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;6.6.87-bone-rt-r27-dtbs.tar.gz&lt;&#x2F;code&gt; (device trees).&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;6.6.87-bone-rt-r27-modules.tar.gz&lt;&#x2F;code&gt; (kernel modules).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;step-3-install-the-kernel-on-the-bbb&quot;&gt;&lt;strong&gt;Step 3: Install the Kernel on the BBB&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-3-install-the-kernel-on-the-bbb&quot; aria-label=&quot;Anchor link for: step-3-install-the-kernel-on-the-bbb&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Connect to the BBB&lt;&#x2F;strong&gt; via USB:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ssh&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; debian@192.168.7.2  &lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Password: temppwd  &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;em&gt;(For macOS, use &lt;code&gt;192.168.6.2&lt;&#x2F;code&gt;)&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Transfer Files&lt;&#x2F;strong&gt; from host to BBB:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;scp&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; deploy&#x2F;6.6.87-bone-rt-r27-&lt;span class=&quot;z-keyword z-operator z-regexp z-quantifier z-shell&quot;&gt;*&lt;&#x2F;span&gt; debian@192.168.7.2:&#x2F;home&#x2F;debian  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;On the BBB&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install kernel modules:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; 1. Create temporary extraction directory&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &lt;span class=&quot;z-meta z-group z-expansion z-tilde&quot;&gt;&lt;span class=&quot;z-variable z-language z-tilde z-shell&quot;&gt;~&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;kernel_temp&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; 2. Extract modules to temporary location&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;tar&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; xvf 6.6.87-bone-rt-r27-modules.tar.gz&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;C&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-expansion z-tilde&quot;&gt;&lt;span class=&quot;z-variable z-language z-tilde z-shell&quot;&gt;~&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;kernel_temp&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; 4. Safely move modules to &#x2F;lib&#x2F;modules&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; mv &lt;span class=&quot;z-meta z-group z-expansion z-tilde&quot;&gt;&lt;span class=&quot;z-variable z-language z-tilde z-shell&quot;&gt;~&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;kernel_temp&#x2F;lib&#x2F;modules&#x2F;6.6.87-bone-rt-r27 &#x2F;lib&#x2F;modules&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; 5. Cleanup temporary files&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;rm&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;rf&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-group z-expansion z-tilde&quot;&gt;&lt;span class=&quot;z-variable z-language z-tilde z-shell&quot;&gt;~&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;kernel_temp&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Install the kernel image:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; cp 6.6.87-bone-rt-r27.zImage &#x2F;boot&#x2F;vmlinuz-6.6.87-bone-rt-r27  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Install device trees:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; tar xvf 6.6.87-bone-rt-r27-dtbs.tar.gz&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;C&lt;&#x2F;span&gt; &#x2F;boot&#x2F;dtbs&#x2F;  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Copy kernel config:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; cp config-6.6.87-bone-rt-r27 &#x2F;boot&#x2F;  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Generate initramfs&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; update-initramfs&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;uk&lt;&#x2F;span&gt; 6.6.87-bone-rt-r27  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Update U-Boot to load the new kernel:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; nano &#x2F;boot&#x2F;uEnv.txt  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add&#x2F;modify:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ini&quot; class=&quot;language-ini z-code&quot;&gt;&lt;code class=&quot;language-ini&quot; data-lang=&quot;ini&quot;&gt;&lt;span class=&quot;z-source z-genconfig&quot;&gt;&lt;span class=&quot;z-meta z-param z-genconfig&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-genconfig&quot;&gt;uname_r&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;=&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-genconfig&quot;&gt;6&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-genconfig&quot;&gt;6&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-constant z-numeric z-genconfig&quot;&gt;87&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;bone&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;rt&lt;span class=&quot;z-keyword z-operator z-genconfig&quot;&gt;-&lt;&#x2F;span&gt;r27  
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;step-4-reboot-and-verify&quot;&gt;&lt;strong&gt;Step 4: Reboot and Verify&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#step-4-reboot-and-verify&quot; aria-label=&quot;Anchor link for: step-4-reboot-and-verify&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Reboot the BBB:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; reboot  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Confirm the real-time kernel is active:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;uname&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;r  &lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Should show &amp;quot;6.6.87-bone-rt-r27&amp;quot;  &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;Test real-time capabilities:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; cyclictest&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;t1&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;p80&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;n&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;i&lt;&#x2F;span&gt; 10000&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;l&lt;&#x2F;span&gt; 10000  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;troubleshooting&quot;&gt;&lt;strong&gt;Troubleshooting&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#troubleshooting&quot; aria-label=&quot;Anchor link for: troubleshooting&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Boot Failure&lt;&#x2F;strong&gt;: Revert by selecting the old kernel in &lt;code&gt;uEnv.txt&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Missing Modules&lt;&#x2F;strong&gt;: Ensure modules are in &lt;code&gt;&#x2F;lib&#x2F;modules&#x2F;6.6.87-bone-rt-r27&#x2F;&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;High Latency&lt;&#x2F;strong&gt;: Disable CPU frequency scaling:&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; cpufreq-set&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;g&lt;&#x2F;span&gt; performance  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;conclusion&quot;&gt;&lt;strong&gt;Conclusion&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;You now have a real-time kernel running on your BeagleBone Black! This unlocks deterministic performance for time-sensitive applications. For production systems, consider:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tuning the kernel via &lt;code&gt;&#x2F;sys&#x2F;kernel&#x2F;realtime&lt;&#x2F;code&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Using hardware-assisted PWM&#x2F;PRU cores for nanosecond precision.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;references&quot;&gt;&lt;strong&gt;References&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#references&quot; aria-label=&quot;Anchor link for: references&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;RobertCNelson&#x2F;bb-kernel&quot;&gt;Official bb-kernel Build Scripts&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;hackmd.io&#x2F;@ericlinsechs&#x2F;How-to-Build-Linux-kernel-for-BeagleBone-Black&quot;&gt;BeagleBone Real-Time Kernel Guide&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.linuxfoundation.org&#x2F;realtime&#x2F;documentation&#x2F;start&quot;&gt;Preempt-RT Patch Documentation&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI</title>
+		<published>2025-05-10T00:00:00+00:00</published>
+		<updated>2025-05-10T00:00:00+00:00</updated>
+		<link href="https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/respeaker-beagleyai/" type="text/html"/>
+		<id>https://jaydon2020.github.io/ALSA-Linux-Driver-for-BELA/notes/respeaker-beagleyai/</id>
+		<content type="html">&lt;h1 id=&quot;porting-respeaker-2-mics-pi-hat-v2-to-beagley-ai&quot;&gt;&lt;strong&gt;Porting ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#porting-respeaker-2-mics-pi-hat-v2-to-beagley-ai&quot; aria-label=&quot;Anchor link for: porting-respeaker-2-mics-pi-hat-v2-to-beagley-ai&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;p&gt;REVISED MAY 2025&lt;&#x2F;p&gt;
+
+&lt;blockquote class=&quot;callout warning has-title&quot;&gt;
+  
+  
+  &lt;p class=&quot;title&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+      &lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M12.865 3.00017L22.3912 19.5002C22.6674 19.9785 22.5035 20.5901 22.0252 20.8662C21.8732 20.954 21.7008 21.0002 21.5252 21.0002H2.47266C1.92037 21.0002 1.47266 20.5525 1.47266 20.0002C1.47266 19.8246 1.51886 19.6522 1.60663 19.5002L11.1329 3.00017C11.4091 2.52187 12.0206 2.358 12.4989 2.63414C12.651 2.72191 12.7772 2.84815 12.865 3.00017ZM4.20471 19.0002H19.7932L11.9989 5.50017L4.20471 19.0002ZM10.9989 16.0002H12.9989V18.0002H10.9989V16.0002ZM10.9989 9.00017H12.9989V14.0002H10.9989V9.00017Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+
+    &lt;&#x2F;span&gt;
+    &lt;strong&gt;Warning&lt;&#x2F;strong&gt;
+  &lt;&#x2F;p&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;This wiki is wrote for ReSpeaker 2-Mics Pi HAT v2, to distinguish the v1 and v2 device, please refer to &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;wiki.seeedstudio.com&#x2F;how-to-distinguish-respeaker_2-mics_pi_hat-hardware-revisions&#x2F;&quot;&gt;How to Distinguish ReSpeaker 2-Mics Pi HAT Hardware Revisions&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+
+  &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;blockquote&gt;
+
+&lt;h2 id=&quot;hardware-overview&quot;&gt;&lt;strong&gt;Hardware Overview&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#hardware-overview&quot; aria-label=&quot;Anchor link for: hardware-overview&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;1-beagley-ai&quot;&gt;1. &lt;strong&gt;BeagleY-AI&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#1-beagley-ai&quot; aria-label=&quot;Anchor link for: 1-beagley-ai&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;docs.beagleboard.org&#x2F;_images&#x2F;beagley-ai.webp&quot; alt=&quot;BeagleY-AI&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;BeagleY® AI is an open-source single board computer designed to simplify the process of building smart human machine interfaces (HMI), adding cameras and high-speed connectivity to a reliable embedded system. It features a powerful 64-bit, quad-core A53 processor, multiple powerful AI accelerators paired with C7x DSPs, integrated 50 GFLOP GPU supporting up to three concurrent display outputs and modern connectivity including USB3.1, PCIe Gen 3, WiFi6 and Bluetooth® Low Energy 5.4.&lt;&#x2F;p&gt;
+&lt;p&gt;The board is compatible with a wide range of existing accessories that expand the system functionality such as power over ethernet (PoE), NVMe storage and 5G connectivity.&lt;&#x2F;p&gt;
+&lt;p&gt;With its competitive price and user-friendly design, Beagle Y AI provides a positive development experience using BeagleBoard&#x27;s tried and tested custom Debian Linux image.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-respeaker-2-mics-pi-hat-v2&quot;&gt;2. &lt;strong&gt;ReSpeaker 2-Mics Pi HAT v2&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-respeaker-2-mics-pi-hat-v2&quot; aria-label=&quot;Anchor link for: 2-respeaker-2-mics-pi-hat-v2&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+
+&lt;blockquote class=&quot;callout note has-title&quot;&gt;
+  
+  
+  &lt;p class=&quot;title&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+      &lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+
+    &lt;&#x2F;span&gt;
+    &lt;strong&gt;Note&lt;&#x2F;strong&gt;
+  &lt;&#x2F;p&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;The reSpeaker 2-Mics Pi HAT has been upgraded to version 2.0. The codec chip has been replaced from WM8960 to TLV320AIC3104, enabling support for Raspberry Pi 5 and expanding the sampling rate range from 8 kHz to 96 kHz.&lt;&#x2F;p&gt;
+
+  &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;media-cdn.seeedstudio.com&#x2F;media&#x2F;catalog&#x2F;product&#x2F;cache&#x2F;bb49d3ec4ee05b6f018e93f896b8a25d&#x2F;0&#x2F;4&#x2F;04_8_1.png&quot; alt=&quot;ReSpeaker&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;ReSpeaker 2-Mics Pi HAT is a dual-microphone expansion board for Raspberry Pi designed for AI and voice applications. You can build a more powerful and flexible voice product that integrates Amazon Alexa Voice Service, Google Assistant, and so on.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setup-process&quot;&gt;&lt;strong&gt;Setup Process&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#setup-process&quot; aria-label=&quot;Anchor link for: setup-process&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;1-bootable-sd-card-preparation&quot;&gt;&lt;strong&gt;1. Bootable SD Card Preparation&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#1-bootable-sd-card-preparation&quot; aria-label=&quot;Anchor link for: 1-bootable-sd-card-preparation&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Create a bootable microSD card with latest&#x2F;recommended OS image for BeagleY-AI. &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;docs.beagleboard.org&#x2F;boards&#x2F;beagley&#x2F;ai&#x2F;02-quick-start.html&quot;&gt;BeagleY-AI Quick Start&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-kernel-driver-compilation&quot;&gt;&lt;strong&gt;2. Kernel Driver Compilation&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-kernel-driver-compilation&quot; aria-label=&quot;Anchor link for: 2-kernel-driver-compilation&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+
+&lt;blockquote class=&quot;callout note has-title&quot;&gt;
+  
+  
+  &lt;p class=&quot;title&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+      &lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+
+    &lt;&#x2F;span&gt;
+    &lt;strong&gt;Note&lt;&#x2F;strong&gt;
+  &lt;&#x2F;p&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;The BeagleY-AI typically comes with the tlv320aic31xx codec driver. If the snd-soc-tlv320aic31xx.ko.xz file is missing, try updating and upgrading your system using the command:
+sudo apt update &amp;amp;&amp;amp; sudo apt upgrade&lt;&#x2F;p&gt;
+&lt;p&gt;If the driver still does not exist after updating, follow the steps below to build it from source.
+If the file is present, you can skip this step and proceed directly to the “Load Device Tree” section.&lt;&#x2F;p&gt;
+
+  &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;blockquote&gt;
+
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; cd linux&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; default configuration&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; make distclean&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- bb.org_defconfig&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; config camera&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- menuconfig&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; -&amp;gt; Device Drivers&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;   -&amp;gt; Sound card support&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;     -&amp;gt; Advance Linux Sound Architecture&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;       -&amp;gt; ALSA for SoC audio support&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;         -&amp;gt; CODEC drivers&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;             -&amp;gt; Texas Instruments TLV320AIC31xx CODECs&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;                Set &amp;quot;TLV320AIC31xx&amp;quot; to module,&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;                Press &amp;quot;m&amp;quot;, save to original name (.config) and exit&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- Image dtbs modules LOCALVERSION=&lt;span class=&quot;z-string z-quoted z-double z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;-ti-arm64-r23&lt;span class=&quot;z-punctuation z-definition z-string z-end z-shell&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;j&lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;nproc&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Plug in the SD card which burned in” Create a bootable microSD card” to PC.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Install onto the SD card&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; sudo cp arch&#x2F;arm64&#x2F;boot&#x2F;Image &#x2F;media&#x2F;&lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;users&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;BOOT&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; sudo cp arch&#x2F;arm64&#x2F;boot&#x2F;dts&#x2F;ti&#x2F;&lt;span class=&quot;z-keyword z-operator z-regexp z-quantifier z-shell&quot;&gt;*&lt;&#x2F;span&gt;.dtbo &#x2F;media&#x2F;&lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;users&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;BOOT&#x2F;overlays&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; you can use &amp;quot;make kernelversion&amp;quot; to check kernel version&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; sudo cp&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;ra&lt;&#x2F;span&gt; modules&#x2F;lib&#x2F;modules&#x2F;&lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;make&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; kernelversion&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;-ti-arm64-r23&#x2F; &#x2F;media&#x2F;&lt;span class=&quot;z-meta z-group z-expansion z-command z-parens z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-variable z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-begin z-shell&quot;&gt;(&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;users&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-section z-parens z-end z-shell&quot;&gt;)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&#x2F;rootfs&#x2F;lib&#x2F;modules&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; sync&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Boot BeagleY-AI with SD card.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;device-tree-configuration&quot;&gt;&lt;strong&gt;Device Tree Configuration&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#device-tree-configuration&quot; aria-label=&quot;Anchor link for: device-tree-configuration&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;Get compiled Device Tree Source (DTS)&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Download the compiled Device Tree Source (DTS) &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; curl https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;jaydon2020&#x2F;ReSpeaker-2-Mics-Pi-HAT-v2-BeagleY-AI&#x2F;refs&#x2F;heads&#x2F;main&#x2F;overlays&#x2F;k3-am67a-beagley-ai-respeaker.dtbo&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;o&lt;&#x2F;span&gt; k3-am67a-beagley-ai-respeaker.dtbo&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; Move the .dtbo file to &#x2F;boot&#x2F;firmware&#x2F;overlays&#x2F;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; mv k3-am67a-beagley-ai-respeaker.dtbo &#x2F;boot&#x2F;firmware&#x2F;overlays&#x2F;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Load Device Tree Configuration&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;Add the overlay to label microSD (default) and append fdtoverlays &lt;code&gt;&#x2F;overlays&#x2F;k3-am67a-beagley-ai-respeaker.dtbo&lt;&#x2F;code&gt; after the fdt line.
+To use the LEDs, you need enable SPI interface first. To enable SPI interface, open the BeagleY-AI &lt;code&gt;&#x2F;boot&#x2F;firmware&#x2F;extlinux&#x2F;extlinux.conf&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;$&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; sudo nano &#x2F;boot&#x2F;firmware&#x2F;extlinux&#x2F;extlinux.conf&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt; label &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;microSD&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; (default&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;&#x2F;span&gt;)
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;    kernel &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;&#x2F;Image&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;    append &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;console&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;ttyS2,115200n8&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-other z-readwrite z-assignment z-shell&quot;&gt;root&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-shell&quot;&gt;=&lt;&#x2F;span&gt;&lt;span class=&quot;z-string z-unquoted z-shell&quot;&gt;&#x2F;dev&#x2F;mmcblk1p3&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;ro&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; rootfstype=ext4 resume=&#x2F;dev&#x2F;mmcblk1p2 rootwait net.ifnames=0 quiet&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;    fdtdir &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;&#x2F;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;    fdt &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;&#x2F;ti&#x2F;k3-am67a-beagley-ai.dtb&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;    fdtoverlays &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;&#x2F;overlays&#x2F;k3-am67a-beagley-ai-respeaker.dtbo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;overlays&#x2F;k3-am67a-beagley-ai-spidev0.dtbo&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;    initrd &lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;&#x2F;initrd.img&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Restart&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; reboot&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;f&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;basic-recording-playback&quot;&gt;&lt;strong&gt;Basic Recording &amp;amp; Playback&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#basic-recording-playback&quot; aria-label=&quot;Anchor link for: basic-recording-playback&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Use &lt;code&gt;aplay -l&lt;&#x2F;code&gt; to list the playback device and &lt;code&gt;arecord -l&lt;&#x2F;code&gt; to list the recording device.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Record mono audio (16-bit, 16kHz)&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;arecord&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;D&lt;&#x2F;span&gt; plughw:0,0&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;format&lt;&#x2F;span&gt; S16_LE&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;rate&lt;&#x2F;span&gt; 16000&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;channels&lt;&#x2F;span&gt; 1&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;duration&lt;&#x2F;span&gt; 5 test_mono.wav&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+
+&lt;blockquote class=&quot;callout note has-title&quot;&gt;
+  
+  
+  &lt;p class=&quot;title&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+      &lt;svg xmlns=&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;18&quot; height=&quot;18&quot;&gt;&lt;path d=&quot;M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM11 7H13V9H11V7ZM11 11H13V17H11V11Z&quot; fill=&quot;currentColor&quot;&gt;&lt;&#x2F;path&gt;&lt;&#x2F;svg&gt;
+
+    &lt;&#x2F;span&gt;
+    &lt;strong&gt;Note&lt;&#x2F;strong&gt;
+  &lt;&#x2F;p&gt;
+  &lt;div class=&quot;content&quot;&gt;
+    &lt;p&gt;Why plughw?The ReSpeaker HAT&#x27;s hardware &lt;code&gt;(hw:0,0)&lt;&#x2F;code&gt; natively supports stereo input only.plughw automatically converts the stereo stream to mono by averaging channels.&lt;&#x2F;p&gt;
+
+  &lt;&#x2F;div&gt;
+  
+&lt;&#x2F;blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Record stereo audio (16-bit, 48kHz)&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;arecord&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;D&lt;&#x2F;span&gt; hw:0,0&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;format&lt;&#x2F;span&gt; S16_LE&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;rate&lt;&#x2F;span&gt; 48000&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;channels&lt;&#x2F;span&gt; 2&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;duration&lt;&#x2F;span&gt; 5 test_stereo.wav  &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Playback recorded audio&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;aplay&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;D&lt;&#x2F;span&gt; hw:0,0 test_mono.wav&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;aplay&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;D&lt;&#x2F;span&gt; hw:0,0 test_stereo.wav&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;Record Sound with Python&lt;&#x2F;strong&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;git&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; clone https:&#x2F;&#x2F;github.com&#x2F;jaydon2020&#x2F;ReSpeaker-2-Mics-Pi-HAT-v2-BeagleY-AI.git &lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-support z-function z-cd z-shell&quot;&gt;cd&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; mic_hat&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; apt-get install portaudio19-dev libatlas-base-dev&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We use PyAudio python library to record sound with Python.First, run the following script to get the device index number of ReSpeaker&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;python3&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; recordings&#x2F;detect_microphone.py&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To record the sound, open &lt;code&gt;recording_examples&#x2F;record_stero.py&lt;&#x2F;code&gt; file with nano, vim or other text editor and change &lt;code&gt;RESPEAKER_INDEX = 1&lt;&#x2F;code&gt; to index number of ReSpeaker on your system. Then run python script &lt;code&gt;record_stero.py&lt;&#x2F;code&gt; to make a recording:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;python3&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; recordings&#x2F;record_stereo.py&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;on-board-user-leds-and-button&quot;&gt;&lt;strong&gt;On-board User LEDs and Button&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#on-board-user-leds-and-button&quot; aria-label=&quot;Anchor link for: on-board-user-leds-and-button&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Setup&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; apt update&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;sudo&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; apt install python3-libgpiod python3-spidev&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run &lt;code&gt;python interfaces&#x2F;pixels.py&lt;&#x2F;code&gt; to test the LEDs.
+Run &lt;code&gt;python interfaces&#x2F;button.py&lt;&#x2F;code&gt; to test the button.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;full-porting-process-and-documentation&quot;&gt;&lt;strong&gt;Full porting process and documentation&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#full-porting-process-and-documentation&quot; aria-label=&quot;Anchor link for: full-porting-process-and-documentation&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Post on hackster &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.hackster.io&#x2F;jaydon-msia&#x2F;porting-the-respeaker-2-mics-pi-hat-v2-to-beagley-ai-6dd8f2&quot;&gt;Porting the ReSpeaker 2-Mics Pi HAT v2 to BeagleY-AI&lt;&#x2F;a&gt; with an application example keyword spotting&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;refrenecs&quot;&gt;&lt;strong&gt;Refrenecs&lt;&#x2F;strong&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#refrenecs&quot; aria-label=&quot;Anchor link for: refrenecs&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;www.seeedstudio.com&#x2F;ReSpeaker-2-Mics-Pi-HAT.html&quot;&gt;https:&#x2F;&#x2F;www.seeedstudio.com&#x2F;ReSpeaker-2-Mics-Pi-HAT.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;docs.beagleboard.org&#x2F;boards&#x2F;beagley&#x2F;ai&#x2F;index.html&quot;&gt;https:&#x2F;&#x2F;docs.beagleboard.org&#x2F;boards&#x2F;beagley&#x2F;ai&#x2F;index.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+	</entry>
+</feed>
